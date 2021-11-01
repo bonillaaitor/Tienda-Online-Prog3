@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+
 
 
 
@@ -53,7 +55,7 @@ public class Bienvenida extends JFrame{
 			 
 				getContentPane().add(bienvenido, BorderLayout.CENTER);
 				getContentPane().add(aceptarBoton, BorderLayout.SOUTH);
-				//panel.setBorder(fondo);
+				panel.setBorder((fondo));
 		
 		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
