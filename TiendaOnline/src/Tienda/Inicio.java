@@ -44,8 +44,8 @@ public class Inicio extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			//crear otro  paquete con empleado cliente persona bici patin... 
-				Empleado em =  null;
-				RegistrarCliente.abrirRegistrarCliente(em);
+				Administrador ad =  null;
+				RegistrarCliente.abrirRegistrarCliente(ad);
 				dispose();
 			}
 			

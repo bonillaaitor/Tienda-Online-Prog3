@@ -5,6 +5,7 @@ public class Cliente extends Persona{
 	private String id;
 	private int contrsenioa;
 	private int tarjeta;
+	
 
 	public Cliente(String nombre, String gmail, String direccion, int telefono, String id, int contrsenioa,
 			int tarjeta) {
