@@ -1,14 +1,14 @@
 package Tienda;
 
-public class Persona {
+public abstract class Persona {
 
+	
 	protected String nombre;
 	protected String gmail;
 	protected String direccion;
-	protected int telefono;
+	protected String telefono;
 	
-	public Persona(String nombre, String gmail, String direccion, int telefono) {
-		super();
+	public Persona(String nombre, String gmail, String direccion, String telefono) {
 		this.nombre = nombre;
 		this.gmail = gmail;
 		this.direccion = direccion;
@@ -16,19 +16,10 @@ public class Persona {
 	}
 	
 	public Persona() {
-		super();
 		this.nombre = "";
 		this.gmail = "";
 		this.direccion = "";
-		this.telefono = 0;
-	}
-	
-	public Persona(Persona p) {
-		super();
-		this.nombre = p.nombre;
-		this.gmail = p.gmail;
-		this.direccion = p.direccion;
-		this.telefono = p.telefono;
+		this.telefono = "";
 	}
 
 	public String getNombre() {
@@ -55,11 +46,11 @@ public class Persona {
 		this.direccion = direccion;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
@@ -68,6 +59,10 @@ public class Persona {
 		return "Persona [nombre=" + nombre + ", gmail=" + gmail + ", direccion=" + direccion + ", telefono=" + telefono
 				+ "]";
 	}
+	
+	
+	
+
 	
 	
 }
