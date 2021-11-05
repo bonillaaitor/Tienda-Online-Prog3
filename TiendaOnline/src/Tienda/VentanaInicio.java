@@ -6,11 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VentanaInicio extends JFrame {
 
@@ -47,14 +50,22 @@ public class VentanaInicio extends JFrame {
 		JButton botonLogin = new JButton("Login");
 		botonLogin.setBounds(131, 202, 89, 23);
 		contentPanel.add(botonLogin);
+		ActionListener botonLoginListener = new botonLoginListener();
+		botonLogin.addActionListener(botonLoginListener);
 		
-		JButton botonRegistro = new JButton("Registro");
-		botonRegistro.setBounds(265, 202, 89, 23);
-		contentPanel.add(botonRegistro);
+		JButton botonRegistroUno = new JButton("Registro");
+		botonRegistroUno.setBounds(265, 202, 89, 23);
+		contentPanel.add(botonRegistroUno);
 		
 		JLabel labelBienvenida = new JLabel("BIENVENIDO A NUESTRA TIENDA ONLINE!");
 		labelBienvenida.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
 		labelBienvenida.setBounds(59, 28, 387, 20);
 		contentPanel.add(labelBienvenida);
+	}
+	public class botonLoginListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+		}
 	}
 }
