@@ -14,12 +14,16 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 public class VentanaInicio extends JFrame {
 
 	private JPanel contentPanel;
 	private JTextField textoUsuario;
 	private JPasswordField textoContra;
+	private final Action actionBotonRegistroUno = new SwingAction();
+	
 
 	public VentanaInicio() {
 		
@@ -50,10 +54,9 @@ public class VentanaInicio extends JFrame {
 		JButton botonLogin = new JButton("Login");
 		botonLogin.setBounds(131, 202, 89, 23);
 		contentPanel.add(botonLogin);
-		ActionListener botonLoginListener = new botonLoginListener();
-		botonLogin.addActionListener(botonLoginListener);
 		
 		JButton botonRegistroUno = new JButton("Registro");
+		botonRegistroUno.setAction(actionBotonRegistroUno);
 		botonRegistroUno.setBounds(265, 202, 89, 23);
 		contentPanel.add(botonRegistroUno);
 		
@@ -62,9 +65,17 @@ public class VentanaInicio extends JFrame {
 		labelBienvenida.setBounds(59, 28, 387, 20);
 		contentPanel.add(labelBienvenida);
 	}
-	public class botonLoginListener implements ActionListener{
-		@Override
+	
+	
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "Registro");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
 		public void actionPerformed(ActionEvent e) {
+			VentanaRegistro ventanaRegistro = new VentanaRegistro();
+			ventanaRegistro.setVisible(true);
+			dispose();
 			
 		}
 	}

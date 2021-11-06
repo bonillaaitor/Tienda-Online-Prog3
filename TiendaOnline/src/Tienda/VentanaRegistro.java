@@ -23,6 +23,7 @@ public class VentanaRegistro extends JFrame {
 	private JTextField textoDireccion;
 	private JTextField textoTelefono;
 	private JTextField textoTarjeta;
+	private final Action actionBotonAtras = new SwingAction();
 
 	public VentanaRegistro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,14 +64,11 @@ public class VentanaRegistro extends JFrame {
 		JButton botonRegistroDos = new JButton("Registrarme");
 		botonRegistroDos.setBounds(98, 409, 101, 23);
 		contentPanel.add(botonRegistroDos);
-		ActionListener botonRegistroDosListener = new botonRegistroDosListener();
-		botonRegistroDos.addActionListener(botonRegistroDosListener);
 
 		JButton botonAtras = new JButton("Atras");
+		botonAtras.setAction(actionBotonAtras);
 		botonAtras.setBounds(236, 409, 101, 23);
 		contentPanel.add(botonAtras);
-		ActionListener botonAtrasListener = new botonAtrasListener();
-		botonAtras.addActionListener(botonAtrasListener);
 
 		textoNombre = new JTextField();
 		textoNombre.setBounds(148, 42, 164, 20);
@@ -108,18 +106,17 @@ public class VentanaRegistro extends JFrame {
 		textoTarjeta.setColumns(10);
 
 	}
-	public class botonAtrasListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-		}
-	}
-	
-	public class botonRegistroDosListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			
-		}
-	}
 
+
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "Atras");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaInicio ventanaInicio = new VentanaInicio();
+			ventanaInicio.setVisible(true);
+			dispose();
+		}
+	}
 }
