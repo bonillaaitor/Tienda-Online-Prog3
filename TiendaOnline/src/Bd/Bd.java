@@ -26,8 +26,8 @@ public class Bd {
 
 	private void conectar() {
 		try {
-			Class.forName(" // (poner un nombre) ");					
-			conn = DriverManager.getConnection("//poner un .db");
+			Class.forName("org.sqlite.JDBC");					
+			conn = DriverManager.getConnection("tiendaonline.db");
 			log(Level.INFO,"conectado a la bd",null);
 		} catch (ClassNotFoundException|SQLException e) {
 			setUltimoError(e);
@@ -59,7 +59,7 @@ public class Bd {
 		}
 	}
 	
-	private void importarClientes() {
+	public static void importarClientes() {
 		List<Cliente>clientes = new ArrayList<Cliente>();
 		File f = null;
 		Scanner sc = null;

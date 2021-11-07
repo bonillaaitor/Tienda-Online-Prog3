@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
+
+import Bd.Bd;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -24,6 +27,8 @@ public class VentanaRegistro extends JFrame {
 	private JTextField textoTelefono;
 	private JTextField textoTarjeta;
 	private final Action actionBotonAtras = new SwingAction();
+	private final Action actionBotonDosRegistro = new SwingAction_1();
+	
 
 	public VentanaRegistro() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +67,7 @@ public class VentanaRegistro extends JFrame {
 		contentPanel.add(labelTarjeta);
 
 		JButton botonRegistroDos = new JButton("Registrarme");
+		botonRegistroDos.setAction(actionBotonDosRegistro);
 		botonRegistroDos.setBounds(98, 409, 101, 23);
 		contentPanel.add(botonRegistroDos);
 
@@ -111,12 +117,21 @@ public class VentanaRegistro extends JFrame {
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "Atras");
-			putValue(SHORT_DESCRIPTION, "Some short description");
+			putValue(SHORT_DESCRIPTION, "Ir a la ventana de atras");
 		}
 		public void actionPerformed(ActionEvent e) {
 			VentanaInicio ventanaInicio = new VentanaInicio();
 			ventanaInicio.setVisible(true);
 			dispose();
+		}
+	}
+	private class SwingAction_1 extends AbstractAction {
+		public SwingAction_1() {
+			putValue(NAME, "Registro");
+			putValue(SHORT_DESCRIPTION, "Registrar cliente");
+		}
+		public void actionPerformed(ActionEvent e) {
+			Bd.importarClientes();
 		}
 	}
 }
