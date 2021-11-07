@@ -1,6 +1,8 @@
 package Tienda;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -31,6 +33,7 @@ public class VentanaRegistro extends JFrame {
 	
 
 	public VentanaRegistro() {
+		setTitle("Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 564);
 		contentPanel = new JPanel();
@@ -110,6 +113,11 @@ public class VentanaRegistro extends JFrame {
 		textoTarjeta.setBounds(148, 312, 164, 20);
 		contentPanel.add(textoTarjeta);
 		textoTarjeta.setColumns(10);
+		
+		JLabel labelRegistro = new JLabel("Registrarse en nuestra tienda online");
+		labelRegistro.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
+		labelRegistro.setBounds(59, 28, 387, 20);
+		contentPanel.add(labelRegistro);
 
 	}
 
