@@ -11,6 +11,7 @@ import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
 import Bd.Bd;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
@@ -120,7 +121,39 @@ public class VentanaRegistro extends JFrame {
 		contentPanel.add(labelRegistro);
 
 	}
+	private boolean comprobarVacios() {
+		if (textoUsuario.getText().equals("")) {
+			JOptionPane.showMessageDialog(this, "Por favor, introduzca un nombre de usuario");
+			return true;
+		}
 
+		if (new String(textoPassword.getText()).equals("")) {
+			JOptionPane.showMessageDialog(this, "Por favor, introduzca una password");
+			return true;
+		}
+
+		if (new String(textoCorreo.getText()).equals("")) {
+			JOptionPane.showMessageDialog(this, "Por favor, introduzca un email de contacto");
+			return true;
+		}
+
+		if (new String(textoNombre.getText()).equals("")) {
+			JOptionPane.showMessageDialog(this, "Por favor, introduzca su nombre");
+			return true;
+		}
+
+		if (new String(textoTarjeta.getText()).equals("")) {
+			JOptionPane.showMessageDialog(this, "Por favor, introduzca su nombre");
+			return true;
+		}
+
+		if (new String(textoDireccion.getText()).equals("")) {
+			JOptionPane.showMessageDialog(this, "Por favor, introduzca su nombre");
+			return true;
+		}
+
+		return false;
+	}
 
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
@@ -139,7 +172,7 @@ public class VentanaRegistro extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Registrar cliente");
 		}
 		public void actionPerformed(ActionEvent e) {
-			Bd.importarClientes();
+			comprobarVacios();
 		}
 	}
 }

@@ -12,64 +12,66 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import Tienda.Cliente;
 
 public class Bd {
-	
+
 	private Connection conn;
-	private static Exception ultimoError = null; 
+	private static Exception ultimoError = null;
 	private static Logger logger = null;
-	
+
 	public Bd() {
 		conectar();
 	}
 
 	private void conectar() {
 		try {
-			Class.forName("org.sqlite.JDBC");					
+			Class.forName("org.sqlite.JDBC");
 			conn = DriverManager.getConnection("tiendaonline.db");
-			log(Level.INFO,"conectado a la bd",null);
-		} catch (ClassNotFoundException|SQLException e) {
+			log(Level.INFO, "conectado a la bd", null);
+		} catch (ClassNotFoundException | SQLException e) {
 			setUltimoError(e);
-			log(Level.SEVERE,"error de conexion en la  bd",e);
+			log(Level.SEVERE, "error de conexion en la  bd", e);
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void desconectar() {
 		try {
 			conn.close();
-			log(Level.INFO,"desconectado",null);
+			log(Level.INFO, "desconectado", null);
 		} catch (Exception e) {
-			log(Level.SEVERE,"error al desconectar",null);
+			log(Level.SEVERE, "error al desconectar", null);
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void borrar(String tabla) {
 		String sqlEliminar = "delete from" + tabla;
 		Statement stmtEliminar;
 		try {
 			stmtEliminar = conn.createStatement();
 			stmtEliminar.executeUpdate(sqlEliminar);
-			log(Level.INFO, " eliminando "+tabla+ "de la bd", null);
+			log(Level.INFO, " eliminando " + tabla + "de la bd", null);
 		} catch (SQLException e) {
 			log(Level.SEVERE, "error al eliminar" + tabla + "de la bd", e);
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void importarClientes() {
-		List<Cliente>clientes = new ArrayList<Cliente>();
+		List<Cliente> clientes = new ArrayList<Cliente>();
 		File f = null;
 		Scanner sc = null;
-		
+
 		try {
-			f= new File("// .csv");
+			f = new File("// .csv");
 			sc = new Scanner(f);
-			while(sc.hasNextLine()) {
+			while (sc.hasNextLine()) {
 				String linea = sc.nextLine();
-				Cliente c =  new Cliente();
+				Cliente c = new Cliente();
 				String[] campos = linea.split(";");
 				c.setNombre(campos[0]);
 				c.setGmail(campos[1]);
@@ -81,24 +83,24 @@ public class Bd {
 				clientes.add(c);
 			}
 			sc.close();
-			
+
 		} catch (Exception e) {
-		e.printStackTrace();
-		log(Level.SEVERE,"Error",null);
-		}finally {
+			e.printStackTrace();
+			log(Level.SEVERE, "Error", null);
+		} finally {
 			sc.close();
 		}
 	}
-	
+
 	private void exportarClientes() {
-		FileWriter f  = null;
+		FileWriter f = null;
 		List<Cliente> clientes = recibirCliente();
-		
+
 		try {
 			f = new FileWriter("// .csv");
-			// hacer con  foreach
+			// hacer con foreach
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -109,16 +111,22 @@ public class Bd {
 	}
 
 	private static void log(Level info, String msg, Object object) {
-		
-		
+
 	}
 
 	private void setUltimoError(Exception ultimoError) {
 		Bd.ultimoError = ultimoError;
-		
+
 	}
 
 	
 
-	
+	/*
+	 * private boolean comprobarPassword() { String contra1 = new
+	 * String(textoPassword.getPassword()); String contra2 = new
+	 * String(textoPassword.getPassword()); if (contra1.equals(contra2)) { return
+	 * false; } else { JOptionPane.showMessageDialog(this,
+	 * "Las password tienen que coincidir"); return true; } }
+	 */
+
 }
