@@ -16,11 +16,18 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.System.Logger.Level;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
 public class VentanaRegistro extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPanel;
 	private JTextField textoNombre;
 	private JTextField textoUsuario;
@@ -117,7 +124,7 @@ public class VentanaRegistro extends JFrame {
 		
 		JLabel labelRegistro = new JLabel("Registrarse en nuestra tienda online");
 		labelRegistro.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 20));
-		labelRegistro.setBounds(59, 28, 387, 20);
+		labelRegistro.setBounds(59, 10, 387, 20);
 		contentPanel.add(labelRegistro);
 
 	}
@@ -155,6 +162,61 @@ public class VentanaRegistro extends JFrame {
 		return false;
 	}
 
+	 public void anadirNuevoCliente(Cliente c){
+			String sql  = "INSERT INTO cliente (email, password, nombre, direccion, telefono, num_tarjeta)" + " VALUES (?,?,?,?,?,?)";
+
+			PreparedStatement stmt;
+			Connection conn = Bd.conectar();
+			try {
+				
+				stmt = conn.prepareStatement(sql);
+
+				stmt.setString(1, c.getGmail());
+				stmt.setString(2, c.getPassword());
+				stmt.setString(3, c.getNombre());
+				stmt.setString(4, c.getDireccion());
+				stmt.setString(5, c.getTelefono());
+				stmt.setString(6, c.getTarjeta());
+
+				stmt.executeUpdate();
+
+				//log(Level.INFO, "El cliente " + c.getNombre() + " ha sido agregado", null);
+			} catch (SQLException e) {
+				//log( Level.SEVERE, "Error al insertar el cliente" + sql, e );
+				e.printStackTrace();
+			}
+	 }			
+			private void registrar() {
+				try {
+
+					if (comprobarVacios()) {
+						return;
+					}
+
+					String usuario = textoUsuario.getText();
+					String pass = new String(textoPassword.getText());;
+					String correo = textoCorreo.getText();
+					String nombre = textoNombre.getText();
+					String tarjeta = textoTarjeta.getText();
+					String direccion = textoDireccion.getText();
+					String telefono = textoTelefono.getText();
+	
+
+					Cliente c = new Cliente(nombre,usuario, pass, correo,direccion,telefono, tarjeta);
+
+					Bd bd = new Bd();
+					anadirNuevoCliente(c);
+					bd.desconectar();
+
+				} 
+				catch (NumberFormatException en) {
+					JOptionPane.showMessageDialog(this, "Por favor, introduzca un numero de tarjeta");
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
 			putValue(NAME, "Atras");
@@ -173,6 +235,7 @@ public class VentanaRegistro extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			comprobarVacios();
+			registrar();
 		}
 	}
 }

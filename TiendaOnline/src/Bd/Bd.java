@@ -26,19 +26,21 @@ public class Bd {
 		conectar();
 	}
 
-	private void conectar() {
+	public static Connection conectar() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("tiendaonline.db");
+			Connection conn = DriverManager.getConnection("tiendaonline.db");
 			log(Level.INFO, "conectado a la bd", null);
+			return conn;
 		} catch (ClassNotFoundException | SQLException e) {
 			setUltimoError(e);
 			log(Level.SEVERE, "error de conexion en la  bd", e);
 			e.printStackTrace();
+			return null;
 		}
 	}
 
-	private void desconectar() {
+	public void desconectar() {
 		try {
 			conn.close();
 			log(Level.INFO, "desconectado", null);
@@ -48,7 +50,7 @@ public class Bd {
 		}
 	}
 
-	private void borrar(String tabla) {
+	public void borrar(String tabla) {
 		String sqlEliminar = "delete from" + tabla;
 		Statement stmtEliminar;
 		try {
@@ -61,6 +63,7 @@ public class Bd {
 		}
 	}
 
+	
 	public static void importarClientes() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		File f = null;
@@ -114,19 +117,10 @@ public class Bd {
 
 	}
 
-	private void setUltimoError(Exception ultimoError) {
+	private static void setUltimoError(Exception ultimoError) {
 		Bd.ultimoError = ultimoError;
 
 	}
 
-	
-
-	/*
-	 * private boolean comprobarPassword() { String contra1 = new
-	 * String(textoPassword.getPassword()); String contra2 = new
-	 * String(textoPassword.getPassword()); if (contra1.equals(contra2)) { return
-	 * false; } else { JOptionPane.showMessageDialog(this,
-	 * "Las password tienen que coincidir"); return true; } }
-	 */
 
 }
