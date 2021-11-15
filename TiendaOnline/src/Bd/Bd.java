@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -18,109 +19,79 @@ import Tienda.Cliente;
 
 public class Bd {
 
-	private Connection conn;
-	private static Exception ultimoError = null;
-	private static Logger logger = null;
-
-	public Bd() {
-		conectar();
-	}
-
-	public static Connection conectar() {
+	public void cargarDriver() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			Connection conn = DriverManager.getConnection("tiendaonline.db");
-			log(Level.INFO, "conectado a la bd", null);
-			return conn;
-		} catch (ClassNotFoundException | SQLException e) {
-			setUltimoError(e);
-			log(Level.SEVERE, "error de conexion en la  bd", e);
-			e.printStackTrace();
-			return null;
+			System.out.println('a');
+		} catch (ClassNotFoundException e) {
+			System.out.println("No se ha podido cargar el driver de la base de datos.");
 		}
+
 	}
 
-	public void desconectar() {
+	public void establecerConexion() {
 		try {
-			conn.close();
-			log(Level.INFO, "desconectado", null);
-		} catch (Exception e) {
-			log(Level.SEVERE, "error al desconectar", null);
-			e.printStackTrace();
-		}
-	}
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:basededatos.db");
+			System.out.println('b');
 
-	public void borrar(String tabla) {
-		String sqlEliminar = "delete from" + tabla;
-		Statement stmtEliminar;
-		try {
-			stmtEliminar = conn.createStatement();
-			stmtEliminar.executeUpdate(sqlEliminar);
-			log(Level.INFO, " eliminando " + tabla + "de la bd", null);
 		} catch (SQLException e) {
-			log(Level.SEVERE, "error al eliminar" + tabla + "de la bd", e);
-			e.printStackTrace();
+			System.out.println("No se ha podido conectar a la base de datos.");
 		}
+
 	}
 
-	
-	public static void importarClientes() {
-		List<Cliente> clientes = new ArrayList<Cliente>();
-		File f = null;
-		Scanner sc = null;
-
+	public void pruebaBD() {
+		cargarDriver();
 		try {
-			f = new File("// .csv");
-			sc = new Scanner(f);
-			while (sc.hasNextLine()) {
-				String linea = sc.nextLine();
-				Cliente c = new Cliente();
-				String[] campos = linea.split(";");
-				c.setNombre(campos[0]);
-				c.setGmail(campos[1]);
-				c.setDireccion(campos[2]);
-				c.setTelefono(campos[3]);
-				c.setUsuario(campos[4]);
-				c.setPassword(campos[5]);
-				c.setTarjeta(campos[6]);
-				clientes.add(c);
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:basededatos.db");
+			try (Scanner scanner = new Scanner(System.in)) {
+				PreparedStatement stmt = conn.prepareStatement(
+						"INSERT INTO Cliente (email, password, nombre, direccion, telefono, num_tarjeta) VALUES (?, ?, ?, ?, ?, ?)");
+
+				stmt.executeUpdate();
+				stmt.close();
 			}
-			sc.close();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			log(Level.SEVERE, "Error", null);
-		} finally {
-			sc.close();
+			conn.close();
+
+		} catch (SQLException e) {
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.out.println(e.getMessage());
 		}
+
 	}
-
-	private void exportarClientes() {
-		FileWriter f = null;
-		List<Cliente> clientes = recibirCliente();
-
+	
+	private void registrar() {
 		try {
-			f = new FileWriter("// .csv");
-			// hacer con foreach
-		} catch (Exception e) {
 
+			if (comprobarVacios()) {
+				return;
+			}
+
+			String usuario = textoUsuario.getText();
+			String pass = new String(textoPassword.getText());;
+			String correo = textoCorreo.getText();
+			String nombre = textoNombre.getText();
+			String tarjeta = textoTarjeta.getText();
+			String direccion = textoDireccion.getText();
+			String telefono = textoTelefono.getText();
+
+
+			Cliente c = new Cliente(nombre,usuario, pass, correo,direccion,telefono, tarjeta);
+
+			Bd bd = new Bd();
+			anadirNuevoCliente(c);
+			bd.desconectar();
+
+		} 
+		catch (NumberFormatException en) {
+			JOptionPane.showMessageDialog(this, "Por favor, introduzca un numero de tarjeta");
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	private List<Cliente> recibirCliente() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static void log(Level info, String msg, Object object) {
-
-	}
-
-	private static void setUltimoError(Exception ultimoError) {
-		Bd.ultimoError = ultimoError;
-
-	}
-
 
 }
+
+

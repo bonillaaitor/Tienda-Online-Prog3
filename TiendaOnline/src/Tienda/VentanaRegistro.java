@@ -18,8 +18,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.System.Logger.Level;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -186,36 +188,7 @@ public class VentanaRegistro extends JFrame {
 				e.printStackTrace();
 			}
 	 }			
-			private void registrar() {
-				try {
-
-					if (comprobarVacios()) {
-						return;
-					}
-
-					String usuario = textoUsuario.getText();
-					String pass = new String(textoPassword.getText());;
-					String correo = textoCorreo.getText();
-					String nombre = textoNombre.getText();
-					String tarjeta = textoTarjeta.getText();
-					String direccion = textoDireccion.getText();
-					String telefono = textoTelefono.getText();
-	
-
-					Cliente c = new Cliente(nombre,usuario, pass, correo,direccion,telefono, tarjeta);
-
-					Bd bd = new Bd();
-					anadirNuevoCliente(c);
-					bd.desconectar();
-
-				} 
-				catch (NumberFormatException en) {
-					JOptionPane.showMessageDialog(this, "Por favor, introduzca un numero de tarjeta");
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+			
 
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
@@ -235,7 +208,50 @@ public class VentanaRegistro extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			comprobarVacios();
-			registrar();
+			pruebaBD();
 		}
 	}
+	
+	//Prueba funcional de inserts en la base de datos
+	public void pruebaBD() {
+		
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		
+		String usuario = textoUsuario.getText();
+		String pass = new String(textoPassword.getText());;
+		String correo = textoCorreo.getText();
+		String nombre = textoNombre.getText();
+		String tarjeta = textoTarjeta.getText();
+		String direccion = textoDireccion.getText();
+		String telefono = textoTelefono.getText();
+		
+		Cliente c = new Cliente(nombre,usuario, pass, correo,direccion,telefono, tarjeta);
+		
+		//Crer metodo aparte para la creacion de los objetos
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/bd/tiendaonline.db");
+			try (Scanner scanner = new Scanner(System.in)) {
+				PreparedStatement stmt = conn.prepareStatement(
+						"INSERT INTO Cliente (email, password, nombre, direccion, telefono, num_tarjeta) VALUES (?, ?, ?, ?, ?, ?)");
+				
+				stmt.setString(1, c.getGmail());
+				stmt.setString(2, c.getPassword());
+				stmt.setString(3, c.getNombre());
+				stmt.setString(4, c.getDireccion());
+				stmt.setString(5, c.getTelefono());
+				stmt.setString(6, c.getTarjeta());
+			
+
+				stmt.executeUpdate();
+				stmt.close();
+			}
+
+			conn.close();
+
+		} catch (SQLException e) {
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.out.println(e.getMessage());
+		}
+}
 }
