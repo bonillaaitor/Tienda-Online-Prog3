@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Bd.Bd;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -14,6 +16,14 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
@@ -23,6 +33,7 @@ public class VentanaInicio extends JFrame {
 	private JTextField textoUsuario;
 	private JPasswordField textoContra;
 	private final Action actionBotonRegistroUno = new SwingAction();
+	private final Action actionBotonLogin = new SwingAction_1();
 	
 
 	public VentanaInicio() {
@@ -52,6 +63,7 @@ public class VentanaInicio extends JFrame {
 		contentPanel.add(labelContra);
 		
 		JButton botonLogin = new JButton("Login");
+		botonLogin.setAction(actionBotonLogin);
 		botonLogin.setBounds(131, 202, 89, 23);
 		contentPanel.add(botonLogin);
 		
@@ -77,6 +89,56 @@ public class VentanaInicio extends JFrame {
 			ventanaRegistro.setVisible(true);
 			dispose();
 			
+		}
+	}
+	
+	
+	public void pruebalogin() {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		
+		String usuario = textoUsuario.getText();
+		String pass = new String(textoContra.getPassword());
+		
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/bd/tiendaonline.db");
+
+			// se crea el statemnt a partir de la conexión establecida
+			Statement stmt = conn.createStatement();
+			// usando el statement se ejecuta la consulta y se obtiene el resultado
+			ResultSet rs = stmt.executeQuery("SELECT nombre, password FROM Cliente");
+
+			// se recorre el resulset fila a fila
+			while (rs.next()) {
+				// se obtienen las columnas
+				String password = rs.getString("password");
+				String nombre = rs.getString("nombre");
+				if (usuario.equals(nombre) && pass.equals(password)) {
+					System.out.println("login exitoso");
+					
+				}else if(rs.next() == false){
+					rs.close();
+					System.out.println("usuario no encontrado");
+				}
+
+				
+			}
+			
+			stmt.close();		
+			conn.close(); // es importante desconectar la conexión al terminar
+
+		} catch (SQLException e) {
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.out.println(e.getMessage());
+		}
+	}
+	private class SwingAction_1 extends AbstractAction {
+		public SwingAction_1() {
+			putValue(NAME, "SwingAction_1");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+			pruebalogin();
 		}
 	}
 }

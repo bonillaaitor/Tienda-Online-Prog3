@@ -208,7 +208,6 @@ public class VentanaRegistro extends JFrame {
 
 		String usuario = textoUsuario.getText();
 		String pass = new String(textoPassword.getText());
-		;
 		String correo = textoCorreo.getText();
 		String nombre = textoNombre.getText();
 		String tarjeta = textoTarjeta.getText();
@@ -229,7 +228,7 @@ public class VentanaRegistro extends JFrame {
 				stmt.setString(3, c.getNombre());
 				stmt.setString(4, c.getDireccion());
 				stmt.setString(5, c.getTelefono());
-				stmt.setString(6, c.getTarjeta());
+				stmt.setString(6, c.getTarjeta()); 
 
 				stmt.executeUpdate();
 				stmt.close();
@@ -289,6 +288,9 @@ public class VentanaRegistro extends JFrame {
 			System.out.println("File IO error:");
 			e.printStackTrace();
 		}
+		
 
 	}
+	
+	
 }
