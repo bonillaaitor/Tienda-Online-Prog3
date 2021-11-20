@@ -15,7 +15,6 @@ public class main {
 				try {
 					VentanaInicio frame = new VentanaInicio();
 					frame.setVisible(true);
-					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

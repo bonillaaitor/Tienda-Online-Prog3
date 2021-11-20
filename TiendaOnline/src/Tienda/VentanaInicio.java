@@ -33,7 +33,7 @@ public class VentanaInicio extends JFrame {
 	private JTextField textoUsuario;
 	private JPasswordField textoContra;
 	private final Action actionBotonRegistroUno = new SwingAction();
-	private final Action actionBotonLogin = new SwingAction_1();
+	private final Action actionBotonLogin = new botonLogin();
 	
 
 	public VentanaInicio() {
@@ -44,6 +44,7 @@ public class VentanaInicio extends JFrame {
 		contentPanel = new JPanel();
 		setContentPane(contentPanel);
 		contentPanel.setLayout(null);
+	
 		
 		JLabel labelUsuario = new JLabel("Usuario");
 		labelUsuario.setBounds(117, 86, 62, 20);
@@ -132,9 +133,9 @@ public class VentanaInicio extends JFrame {
 			System.out.println(e.getMessage());
 		}
 	}
-	private class SwingAction_1 extends AbstractAction {
-		public SwingAction_1() {
-			putValue(NAME, "SwingAction_1");
+	private class botonLogin extends AbstractAction {
+		public botonLogin() {
+			putValue(NAME, "Login");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
