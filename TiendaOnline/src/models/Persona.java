@@ -1,4 +1,4 @@
-package Tienda;
+package models;
 
 public abstract class Persona {
 

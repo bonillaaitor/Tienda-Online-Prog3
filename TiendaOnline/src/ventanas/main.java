@@ -1,8 +1,8 @@
-package Tienda;
+package ventanas;
 
 import java.awt.EventQueue;
 
-import Bd.Bd;
+import bd.Bd;
 
 public class main {
 

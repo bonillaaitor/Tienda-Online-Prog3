@@ -1,4 +1,4 @@
-package Tienda;
+package models;
 
 public class Bicicleta extends Vehiculo{
 
