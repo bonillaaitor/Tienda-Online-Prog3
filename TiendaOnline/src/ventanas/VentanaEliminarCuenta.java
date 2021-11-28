@@ -5,42 +5,35 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
+import bd.Bd;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
 import javax.swing.Action;
 
 public class VentanaEliminarCuenta extends JFrame {
 
 	private JPanel contentPanelEliminarCuenta;
 	private JTextField textoUsuario;
-	private JTextField textoPassword;
+	private JPasswordField textoPassword;
 	private final Action actionBotonAtras = new botonAtras();
+	private final Action actionBotonEliminar = new botonEliminar();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaEliminarCuenta frame = new VentanaEliminarCuenta();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VentanaEliminarCuenta() {
+		setTitle("ventana Eliminar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
 		contentPanelEliminarCuenta = new JPanel();
@@ -53,7 +46,7 @@ public class VentanaEliminarCuenta extends JFrame {
 		contentPanelEliminarCuenta.add(textoUsuario);
 		textoUsuario.setColumns(10);
 		
-		textoPassword = new JTextField();
+		textoPassword = new JPasswordField();
 		textoPassword.setBounds(445, 236, 142, 20);
 		contentPanelEliminarCuenta.add(textoPassword);
 		textoPassword.setColumns(10);
@@ -77,9 +70,11 @@ public class VentanaEliminarCuenta extends JFrame {
 		contentPanelEliminarCuenta.add(botonAtras);
 		
 		JButton botonEliminar = new JButton("Eliminar");
+		botonEliminar.setAction(actionBotonEliminar);
 		botonEliminar.setBounds(314, 443, 89, 23);
 		contentPanelEliminarCuenta.add(botonEliminar);
 	}
+
 	private class botonAtras extends AbstractAction {
 		public botonAtras() {
 			putValue(NAME, "Atras");
@@ -91,4 +86,46 @@ public class VentanaEliminarCuenta extends JFrame {
 			dispose();
 		}
 	}
-}
+	
+	public void eliminarCuenta(){
+		Bd bd =  new Bd();
+		bd.cargarDriver();
+		
+		String usuario = new String(textoUsuario.getText());
+        String pass = new String(textoPassword.getPassword());
+       
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+            try (Scanner scanner = new Scanner(System.in)) {
+                PreparedStatement stmt = conn.prepareStatement(
+                        "DELETE FROM Cliente WHERE usuario =? AND password =? ");
+                		//"DELETE nombre, usuario, password, email,direccion, telefono,num_tarjeta FROM Cliente WHERE nombre ='?' AND password ='?'");
+                stmt.setString(1, usuario);
+                stmt.setString(2, pass);
+               
+                stmt.executeUpdate();
+                stmt.close();
+            }
+
+            conn.close();
+
+        } catch (SQLException e) {
+            System.out.println("No se ha podido conectar a la base de datos.");
+            System.out.println(e.getMessage());
+        }
+    }
+		
+	private class botonEliminar extends AbstractAction {
+		public botonEliminar() {
+			putValue(NAME, "Eliminar");
+			putValue(SHORT_DESCRIPTION, "Eliminar la cuenta");
+		}
+		public void actionPerformed(ActionEvent e) {
+			eliminarCuenta();
+			VentanaInicio ventanaInicio = new VentanaInicio();
+			ventanaInicio.setVisible(true);
+			dispose();
+		}
+	}
+	}
+

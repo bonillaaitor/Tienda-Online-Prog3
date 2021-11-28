@@ -130,7 +130,12 @@ public class VentanaInicio extends JFrame {
 					ventanaCliente.setVisible(true);
 					dispose();
 					
-				} else if (rs.next() == false) {
+				} else if (usuario.equals("admin")&& pass.equals("admin")) {
+					rs.close();
+					VentanaAdmin ventanaAdmin = new VentanaAdmin();
+					ventanaAdmin.setVisible(true);
+					dispose();
+				}else if (rs.next() == false) {
 					System.out.println("usuario no encontrado");
 				}
 

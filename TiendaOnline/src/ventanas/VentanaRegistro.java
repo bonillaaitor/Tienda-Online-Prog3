@@ -162,6 +162,9 @@ public class VentanaRegistro extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			comprobarVacios();
 			registroCliente();
+			VentanaInicio ventanaInicio = new VentanaInicio();
+			ventanaInicio.setVisible(true);
+			dispose();
 			
 		}
 	}

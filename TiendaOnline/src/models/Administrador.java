@@ -27,8 +27,4 @@ public class Administrador extends Persona {
 		return "Administrador [admin=" + admin + "]";
 	}
 	
-
-	
-	
-	
 }
