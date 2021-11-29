@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import bd.Bd;
+import models.Cliente;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -20,6 +23,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
@@ -96,10 +102,12 @@ public class VentanaInicio extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			loginTiendaOnline();
 			
-		}
-	}
+					loginTiendaOnline();
+				
+
+			};
+			
 
 	public void loginTiendaOnline() {
 		Bd bd = new Bd();
@@ -107,42 +115,49 @@ public class VentanaInicio extends JFrame {
 
 		String usuario = new String(textoUsuario.getText());
 		String pass = new String(textoContra.getPassword());
+		String usuarioAdmin = "admin";
+		String passAdmin = "admin";
 		System.out.println(usuario);
 		System.out.println(pass);
+		ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
 
 			Statement stmt = conn.createStatement();
 
 			ResultSet rs = stmt.executeQuery("SELECT usuario, password FROM Cliente");
-		
+
 			while (rs.next()) {
-				
-				String usuario2 = rs.getString("usuario");
-				System.out.println(usuario2);
-				String password2 = rs.getString("password");
-				System.out.println(password2);
-				
+
+				Cliente c = new Cliente();
+				c.setUsuario(rs.getString("usuario"));
+				c.setPassword(rs.getString("password"));
+				listaCliente.add(c);
+			}
+
+			for (Iterator iterator = listaCliente.iterator(); iterator.hasNext();) {
+				Cliente cliente = (Cliente) iterator.next();
+				String usuario2 = cliente.getUsuario();
+				String password2 = cliente.getPassword();
+
 				if (usuario2.equals(usuario) && password2.equals(pass)) {
-					System.out.println("login exitoso");
-					rs.close();
 					VentanaCliente ventanaCliente = new VentanaCliente();
 					ventanaCliente.setVisible(true);
 					dispose();
-					
-				} else if (usuario.equals("admin")&& pass.equals("admin")) {
-					rs.close();
+					break;
+
+				} else if (usuarioAdmin.equals(usuario) && passAdmin.equals(pass)) {
 					VentanaAdmin ventanaAdmin = new VentanaAdmin();
 					ventanaAdmin.setVisible(true);
 					dispose();
-				}else if (rs.next() == false) {
-					System.out.println("usuario no encontrado");
+					break;
 				}
-
+				
+				rs.close();
+				stmt.close();
+				conn.close();
 			}
-
-			stmt.close();
-			conn.close();
 
 		} catch (SQLException e) {
 			System.out.println("No se ha podido conectar a la base de datos.");
@@ -150,4 +165,5 @@ public class VentanaInicio extends JFrame {
 		}
 	}
 
+}
 }
