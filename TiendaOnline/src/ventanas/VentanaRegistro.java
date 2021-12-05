@@ -161,46 +161,52 @@ public class VentanaRegistro extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			comprobarVacios();
-			registroCliente();
-			VentanaInicio ventanaInicio = new VentanaInicio();
-			ventanaInicio.setVisible(true);
-			dispose();
-			
+			registroCliente();			
 		}
 	}
-	//Metodo para comprobar los vacios de los campos de texto
-	private boolean comprobarVacios() {
-		if (textoUsuario.getText().equals("")) {
-			JOptionPane.showMessageDialog(this, "Por favor, introduzca un nombre de usuario");
-			return true;
-		}
+	//Metodo para comprobar que todos los campos del registro se han rellenado correctamente
+	private void comprobarVacios() {
+	
+		String nombre = textoNombre.getText().toString();
+		String usuario = textoUsuario.getText().toString();
+		String telefono = textoTelefono.getText().toString();
+		
+		if (textoNombre.getText().equals("") || textoUsuario.getText().equals("") || textoPassword.toString().equals("")
+				|| textoCorreo.getText().equals("") || textoDireccion.toString().equals("")
+				|| textoTelefono.getText().equals("") || textoTarjeta.toString().equals("")) {
 
-		if (new String(textoPassword.getText()).equals("")) {
-			JOptionPane.showMessageDialog(this, "Por favor, introduzca una password");
-			return true;
-		}
+			JOptionPane.showMessageDialog(null, "Por favor, rellene todos los campos.", "Error",JOptionPane.INFORMATION_MESSAGE);
+			VentanaRegistro.this.repaint();
+		
+		} else if (nombre.matches("^[0-9]+$")) {
 
-		if (new String(textoCorreo.getText()).equals("")) {
-			JOptionPane.showMessageDialog(this, "Por favor, introduzca un email de contacto");
-			return true;
-		}
+			JOptionPane.showMessageDialog(null, "Nombre no válido.", "Error",JOptionPane.INFORMATION_MESSAGE);
+			VentanaRegistro.this.repaint();
 
-		if (new String(textoNombre.getText()).equals("")) {
-			JOptionPane.showMessageDialog(this, "Por favor, introduzca su nombre");
-			return true;
-		}
+		} else if (usuario.matches("^[0-9]+$")) {
 
-		if (new String(textoTarjeta.getText()).equals("")) {
-			JOptionPane.showMessageDialog(this, "Por favor, introduzca su nombre");
-			return true;
-		}
+			JOptionPane.showMessageDialog(null, "Usuario no válido.", "Error",JOptionPane.INFORMATION_MESSAGE);
+			VentanaRegistro.this.repaint();
 
-		if (new String(textoDireccion.getText()).equals("")) {
-			JOptionPane.showMessageDialog(this, "Por favor, introduzca su nombre");
-			return true;
-		}
+		
+		} else if (!textoCorreo.getText().contains("@") || !(textoCorreo.getText().contains(".es")
+				|| textoCorreo.getText().contains(".com") || textoCorreo.getText().contains(".eus"))) {
 
-		return false;
+			JOptionPane.showMessageDialog(null, "Email no válido.", "Error",JOptionPane.INFORMATION_MESSAGE);
+			VentanaRegistro.this.repaint();
+			
+		} else if (telefono.matches("^[a-zA-Z]+$")) {
+
+			JOptionPane.showMessageDialog(null, "Telefono no válido.", "Error",JOptionPane.INFORMATION_MESSAGE);
+			VentanaRegistro.this.repaint();
+
+		} else {
+			
+			JOptionPane.showMessageDialog(null, "Cliente registrado correctamente.", "Nuevo cliente",JOptionPane.INFORMATION_MESSAGE);
+			VentanaRegistro.this.dispose();
+			VentanaInicio ventanaInicio = new VentanaInicio();
+			ventanaInicio.setVisible(true);
+		}		
 	}
 
 	// Prueba funcional de inserts en la base de datos
