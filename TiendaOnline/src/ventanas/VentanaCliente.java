@@ -19,6 +19,7 @@ public class VentanaCliente extends JFrame {
 	private JPanel contentPanelUsuario;
 	private final Action eliminarCuenta = new botonEliminarCuenta();
 	private final Action cerrarSesion = new botonCerrarSesion();
+	private final Action crearPedido = new botonCrearPedido();
 
 
 	public VentanaCliente() {
@@ -31,6 +32,7 @@ public class VentanaCliente extends JFrame {
 		contentPanelUsuario.setLayout(null);
 		
 		JButton botonCrearPedido = new JButton("Crear Pedido");
+		botonCrearPedido.setAction(crearPedido);
 		botonCrearPedido.setBounds(415, 188, 157, 23);
 		contentPanelUsuario.add(botonCrearPedido);
 		
@@ -80,6 +82,17 @@ public class VentanaCliente extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			VentanaInicio ventanaInicio = new VentanaInicio();
 			ventanaInicio.setVisible(true);
+			dispose();
+		}
+	}
+	private class botonCrearPedido extends AbstractAction {
+		public botonCrearPedido() {
+			putValue(NAME, "Crear pedido");
+			putValue(SHORT_DESCRIPTION, "Ir a la ventana de creacion de pedido");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaCrearPedido ventanaCrearPedido = new VentanaCrearPedido();
+			ventanaCrearPedido.setVisible(true);
 			dispose();
 		}
 	}

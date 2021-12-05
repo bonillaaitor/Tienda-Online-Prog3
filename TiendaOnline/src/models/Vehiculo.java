@@ -1,18 +1,16 @@
 package models;
 
-public class Vehiculo {
+public abstract class Vehiculo {
 
 	protected String modelo;
 	protected String marca;
 	protected int precio;
 	protected int cv;
 	protected int ruedas;
-	protected int manillar;
-	protected boolean frenos;
+	protected String manillar;
 	
 	
-	public Vehiculo(String modelo, String marca, int precio,int cv,int ruedas, int manillar
-	, boolean frenos) {
+	public Vehiculo(String modelo, String marca, int precio,int cv,int ruedas, String manillar) {
 		super();
 		this.modelo = modelo;
 		this.marca = marca;
@@ -20,7 +18,6 @@ public class Vehiculo {
 		this.cv= cv;
 		this.ruedas = ruedas;
 		this.manillar = manillar;
-		this.frenos = frenos;
 	}
 	
 	public Vehiculo() {
@@ -30,8 +27,8 @@ public class Vehiculo {
 		this.precio = 0;
 		this.cv= 0;
 		this.ruedas = 0;
-		this.manillar = 0;
-		this.frenos = false;
+		this.manillar = "";
+		
 	}
 	
 	public Vehiculo(Vehiculo  v) {
@@ -42,7 +39,7 @@ public class Vehiculo {
 		this.cv= v.cv;
 		this.ruedas = v.ruedas;
 		this.manillar = v.manillar;
-		this.frenos = v.frenos;
+		
 	}
 
 	public String getModelo() {
@@ -69,7 +66,7 @@ public class Vehiculo {
 		this.precio = precio;
 	}
 	public int getCv() {
-		return precio;
+		return cv;
 	}
 
 	public void setCv(int cv) {
@@ -82,24 +79,18 @@ public class Vehiculo {
 	public void setRueda(int rueda) {
 		this.ruedas = rueda;
 	}
-	public int getManillar() {
+	public String getManillar() {
 		return manillar;
 	}
 
-	public void setManillar(int manillar) {
+	public void setManillar(String manillar) {
 		this.manillar = manillar;
 	}
-	public boolean getFreno() {
-		return false;
-	}
-
-	public void setFreno(boolean freno) {
-		this.frenos = freno;
-	}
+	
 	
 	@Override
 	public String toString() {
-		return marca +" " + modelo + " " + precio + "€" + ",tiene" + cv + ruedas + " " + manillar + " " + frenos +" ";
+		return marca +" " + modelo + " " + precio + "€" + ",tiene" + cv + ruedas + " " + manillar + " ";
 	}
 
 	
