@@ -20,7 +20,7 @@ public class VentanaCliente extends JFrame {
 	private final Action eliminarCuenta = new botonEliminarCuenta();
 	private final Action cerrarSesion = new botonCerrarSesion();
 	private final Action crearPedido = new botonCrearPedido();
-
+	private final Action verPedido = new botonVerPedido();
 
 	public VentanaCliente() {
 		setTitle("ventana Cliente");
@@ -37,6 +37,7 @@ public class VentanaCliente extends JFrame {
 		contentPanelUsuario.add(botonCrearPedido);
 		
 		JButton botonVerPedido = new JButton("Ver Pedido");
+		botonVerPedido.setAction(verPedido);
 		botonVerPedido.setBounds(415, 241, 157, 23);
 		contentPanelUsuario.add(botonVerPedido);
 		
@@ -60,8 +61,9 @@ public class VentanaCliente extends JFrame {
 		
 		JLabel labelTitulo = new JLabel("Tienda Online");
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		labelTitulo.setBounds(403, 26, 179, 43);
+		labelTitulo.setBounds(406, 44, 179, 43);
 		contentPanelUsuario.add(labelTitulo);
+				
 	}
 	private class botonEliminarCuenta extends AbstractAction {
 		public botonEliminarCuenta() {
@@ -96,4 +98,16 @@ public class VentanaCliente extends JFrame {
 			dispose();
 		}
 	}
+	private class botonVerPedido extends AbstractAction {
+		public botonVerPedido() {
+			putValue(NAME, "Ver Pedidos");
+			putValue(SHORT_DESCRIPTION, "Ver los pedidos realizados");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaVerPedidos ventanaVerPedidos = new VentanaVerPedidos();
+			ventanaVerPedidos.setVisible(true);
+			dispose();
+		}
+	}
+
 }

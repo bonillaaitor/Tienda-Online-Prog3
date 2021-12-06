@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ public class VentanaAdmin extends JFrame {
 
 	private JPanel contentAdmin;
 	private final Action actionCerrarSesion = new botonCerrarSesion();
+	private final Action anyadirStock = new botonAnyadirStock();
 
 	public VentanaAdmin() {
 		setTitle("ventana Admin");
@@ -38,24 +40,25 @@ public class VentanaAdmin extends JFrame {
 		contentAdmin.add(botonCerrarSesion);
 		
 		JButton botonVerPedidos = new JButton("Ver Pedidos");
-		botonVerPedidos.setBounds(428, 136, 125, 23);
+		botonVerPedidos.setBounds(428, 151, 151, 23);
 		contentAdmin.add(botonVerPedidos);
 		
 		JButton botonImportarProducto = new JButton("Importar Productos");
-		botonImportarProducto.setBounds(428, 193, 125, 23);
+		botonImportarProducto.setBounds(428, 202, 151, 23);
 		contentAdmin.add(botonImportarProducto);
 		
-		JButton botonAnadirStock = new JButton("A\u00F1adir Stock");
-		botonAnadirStock.setBounds(428, 246, 125, 23);
-		contentAdmin.add(botonAnadirStock);
+		JButton botonAnyadirStock = new JButton("Añadir Stock");
+		botonAnyadirStock.setAction(anyadirStock);
+		botonAnyadirStock.setBounds(428, 253, 151, 23);
+		contentAdmin.add(botonAnyadirStock);
 		
 		JButton botonExportarPedidos = new JButton("Exportar Pedidos");
-		botonExportarPedidos.setBounds(428, 307, 125, 23);
+		botonExportarPedidos.setBounds(428, 304, 151, 23);
 		contentAdmin.add(botonExportarPedidos);
 		
 		JLabel labelTitulo = new JLabel("Menu Administrador");
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		labelTitulo.setBounds(359, 35, 281, 35);
+		labelTitulo.setBounds(384, 38, 281, 35);
 		contentAdmin.add(labelTitulo);
 	}
 	private class botonCerrarSesion extends AbstractAction {
@@ -67,6 +70,17 @@ public class VentanaAdmin extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			VentanaInicio ventanaInicio = new VentanaInicio();
 			ventanaInicio.setVisible(true);
+			dispose();
+		}
+	}
+	private class botonAnyadirStock extends AbstractAction {
+		public botonAnyadirStock() {
+			putValue(NAME, "Añadir Stock");
+			putValue(SHORT_DESCRIPTION, "Añadir stock de uno o varios productos");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaAnyadirStock ventanaAnyadirStock = new VentanaAnyadirStock();
+			ventanaAnyadirStock.setVisible(true);
 			dispose();
 		}
 	}

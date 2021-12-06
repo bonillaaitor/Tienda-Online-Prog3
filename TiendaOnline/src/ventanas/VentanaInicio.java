@@ -47,42 +47,46 @@ public class VentanaInicio extends JFrame {
 		contentPanel.setLayout(null);
 
 		JLabel labelUsuario = new JLabel("Usuario");
-		labelUsuario.setBounds(338, 222, 62, 20);
+		labelUsuario.setBounds(380, 224, 62, 20);
 		contentPanel.add(labelUsuario);
 
 		textoUsuario = new JTextField();
-		textoUsuario.setBounds(433, 222, 150, 20);
+		textoUsuario.setBounds(466, 224, 150, 20);
 		contentPanel.add(textoUsuario);
 		textoUsuario.setColumns(10);
 
 		textoContra = new JPasswordField();
-		textoContra.setBounds(433, 283, 150, 20);
+		textoContra.setBounds(466, 284, 150, 20);
 		contentPanel.add(textoContra);
 
-		JLabel labelContra = new JLabel("Password");
-		labelContra.setBounds(338, 285, 62, 17);
+		JLabel labelContra = new JLabel("Contrase\u00F1a");
+		labelContra.setBounds(360, 286, 82, 17);
 		contentPanel.add(labelContra);
 
 		JButton botonLogin = new JButton("Login");
+		botonLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		botonLogin.setAction(actionBotonLogin);
-		botonLogin.setBounds(357, 413, 89, 23);
+		botonLogin.setBounds(600, 394, 120, 23);
 		contentPanel.add(botonLogin);
 
 		JButton botonRegistro = new JButton("Registro");
 		botonRegistro.setAction(actionBotonRegistro);
-		botonRegistro.setBounds(554, 413, 89, 23);
+		botonRegistro.setBounds(275, 394, 120, 23);
 		contentPanel.add(botonRegistro);
 
 		JLabel labelBienvenida = new JLabel("BIENVENIDO A NUESTRA TIENDA ONLINE!");
 		labelBienvenida.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		labelBienvenida.setBounds(187, 31, 637, 35);
+		labelBienvenida.setBounds(214, 53, 637, 35);
 		contentPanel.add(labelBienvenida);
 	}
 
 	// Funcionalidad del boton para avanzar a la ventana de registro
 	private class botonRegistro extends AbstractAction {
 		public botonRegistro() {
-			putValue(NAME, "Registro");
+			putValue(NAME, "Registrarse");
 			putValue(SHORT_DESCRIPTION, "Abrir la ventana del registro");
 		}
 
@@ -97,7 +101,7 @@ public class VentanaInicio extends JFrame {
 	// Funcionalidad del boton para avanzar a la ventana de cliente o admin
 	private class botonLogin extends AbstractAction {
 		public botonLogin() {
-			putValue(NAME, "Login");
+			putValue(NAME, "Iniciar sesión");
 			putValue(SHORT_DESCRIPTION, "Abrir la ventana del usuario");
 		}
 
