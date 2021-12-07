@@ -17,14 +17,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 public class VentanaCrearPedido extends JFrame {
 
 	private JPanel contentPanelCrearPedido;
 	private JTable table;
+	private final Action action = new btnAtras();
 
 	
 	public VentanaCrearPedido() {
+		setTitle("Crear Pedido");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
 		contentPanelCrearPedido = new JPanel();
@@ -94,22 +98,6 @@ public class VentanaCrearPedido extends JFrame {
 		labelRuedas.setBounds(843, 468, 46, 14);
 		contentPanelCrearPedido.add(labelRuedas);
 		
-		JButton botonAnadirProducto = new JButton("A\u00F1adir Producto");
-		botonAnadirProducto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		botonAnadirProducto.setBounds(443, 381, 124, 23);
-		contentPanelCrearPedido.add(botonAnadirProducto);
-		
-		JButton botonCrearPedido = new JButton("Crear Pedido");
-		botonCrearPedido.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		botonCrearPedido.setBounds(443, 454, 124, 23);
-		contentPanelCrearPedido.add(botonCrearPedido);
-		
 		JComboBox comboBoxModeloB = new JComboBox();
 		comboBoxModeloB.setModel(new DefaultComboBoxModel(new String[] {"Carretera", "Ciudad"}));
 		comboBoxModeloB.setBounds(89, 381, 94, 22);
@@ -170,7 +158,43 @@ public class VentanaCrearPedido extends JFrame {
 		comboBoxRuedasP.setBounds(899, 464, 94, 22);
 		contentPanelCrearPedido.add(comboBoxRuedasP);
 		
+		JButton btnAnadirBici = new JButton("A\u00F1adir Bici");
+		btnAnadirBici.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAnadirBici.setBounds(139, 512, 129, 23);
+		contentPanelCrearPedido.add(btnAnadirBici);
+		
+		JButton btnAnadirPatin = new JButton("A\u00F1adir Patin");
+		btnAnadirPatin.setBounds(785, 512, 129, 23);
+		contentPanelCrearPedido.add(btnAnadirPatin);
+		
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.setAction(action);
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAtras.setBounds(463, 512, 118, 23);
+		contentPanelCrearPedido.add(btnAtras);
+		
+		JButton btnCrearPedido = new JButton("Crear pedido");
+		btnCrearPedido.setBounds(463, 396, 118, 23);
+		contentPanelCrearPedido.add(btnCrearPedido);
 		
 		
+		
+	}
+	private class btnAtras extends AbstractAction {
+		public btnAtras() {
+			putValue(NAME, "Atras");
+			putValue(SHORT_DESCRIPTION, "ir a la ventana cliente");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaCliente ventanaCliente = new VentanaCliente();
+			ventanaCliente.setVisible(true);
+			dispose();
+			}
 	}
 }

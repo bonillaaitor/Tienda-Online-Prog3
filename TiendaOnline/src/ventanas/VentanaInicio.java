@@ -101,7 +101,7 @@ public class VentanaInicio extends JFrame {
 	// Funcionalidad del boton para avanzar a la ventana de cliente o admin
 	private class botonLogin extends AbstractAction {
 		public botonLogin() {
-			putValue(NAME, "Iniciar sesión");
+			putValue(NAME, " Iniciar sesion");
 			putValue(SHORT_DESCRIPTION, "Abrir la ventana del usuario");
 		}
 
