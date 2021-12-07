@@ -12,11 +12,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 
 public class VentanaAnyadirStock extends JFrame {
 
 	private JPanel contentPanelAnyadirStock;
+	private final Action action = new BotonAtras();
 
 	public VentanaAnyadirStock() {
 		setTitle("Añadir Stock");
@@ -200,6 +203,22 @@ public class VentanaAnyadirStock extends JFrame {
 		labelPatin_1_1.setBounds(210, 117, 471, 14);
 		contentPanelAnyadirStock.add(labelPatin_1_1);
 		
+		JButton botonAtras = new JButton("New button");
+		botonAtras.setAction(action);
+		botonAtras.setBounds(805, 489, 124, 23);
+		contentPanelAnyadirStock.add(botonAtras);
+		
 	
+	}
+	private class BotonAtras extends AbstractAction {
+		public BotonAtras() {
+			putValue(NAME, "Atras");
+			putValue(SHORT_DESCRIPTION, "Ir a la ventana anterior");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaAdmin ventanaAdmin = new VentanaAdmin();
+			ventanaAdmin.setVisible(true);
+			dispose();
+		}
 	}
 }

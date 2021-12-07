@@ -7,12 +7,18 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.AbstractAction;
+import java.awt.event.ActionEvent;
+import javax.swing.Action;
 
 
 public class VentanaVerPedidos extends JFrame {
 
 	private JPanel contentPanelVerPedidos;
 	private JTable table;
+	private JButton botonAtras;
+	private final Action action = new BotonAtras();
 
 	public VentanaVerPedidos() {
 		setTitle("Ver Pedidos");
@@ -25,12 +31,29 @@ public class VentanaVerPedidos extends JFrame {
 		
 		JLabel labelTitulo = new JLabel("Lista de pedidos");
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		labelTitulo.setBounds(403, 26, 213, 43);
+		labelTitulo.setBounds(427, 30, 213, 43);
 		contentPanelVerPedidos.add(labelTitulo);
 		
 		table = new JTable();
-		table.setBounds(24, 105, 979, 401);
+		table.setBounds(53, 105, 932, 382);
 		contentPanelVerPedidos.add(table);
+		
+		botonAtras = new JButton("botonAtras");
+		botonAtras.setAction(action);
+		botonAtras.setBounds(463, 512, 118, 23);
+		contentPanelVerPedidos.add(botonAtras);
+		
 	}
 	
+	private class BotonAtras extends AbstractAction {
+		public BotonAtras() {
+			putValue(NAME, "Atras");
+			putValue(SHORT_DESCRIPTION, "Ir a la ventana anterior");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaCliente ventanaCliente = new VentanaCliente();
+			ventanaCliente.setVisible(true);
+			dispose();
+		}
+	}
 }

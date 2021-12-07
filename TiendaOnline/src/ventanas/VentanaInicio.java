@@ -16,6 +16,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.sql.Connection;
@@ -81,7 +83,29 @@ public class VentanaInicio extends JFrame {
 		labelBienvenida.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		labelBienvenida.setBounds(214, 53, 637, 35);
 		contentPanel.add(labelBienvenida);
+		
+		// Funcionalidad de iniciar sesión pulsando Enter
+		textoContra.addKeyListener(new KeyListener() {
+	        @Override
+	        public void keyTyped(KeyEvent e) {
+
+	        }
+
+	        @Override
+	        public void keyPressed(KeyEvent e) {
+	            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+	            	loginTiendaOnline();
+	            }
+	        }
+
+	        @Override
+	        public void keyReleased(KeyEvent e) {
+
+	        }
+	    });
+		
 	}
+	
 
 	// Funcionalidad del boton para avanzar a la ventana de registro
 	private class botonRegistro extends AbstractAction {
@@ -98,11 +122,13 @@ public class VentanaInicio extends JFrame {
 		}
 	}
 
+	
 	// Funcionalidad del boton para avanzar a la ventana de cliente o admin
-	private class botonLogin extends AbstractAction {
+	public class botonLogin extends AbstractAction {
 		public botonLogin() {
 			putValue(NAME, " Iniciar sesion");
 			putValue(SHORT_DESCRIPTION, "Abrir la ventana del usuario");
+			
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -111,6 +137,7 @@ public class VentanaInicio extends JFrame {
 				
 
 			};
+	}
 			
 
 	public void loginTiendaOnline() {
@@ -168,6 +195,6 @@ public class VentanaInicio extends JFrame {
 			System.out.println(e.getMessage());
 		}
 	}
+	
 
-}
 }
