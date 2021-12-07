@@ -11,7 +11,7 @@ public class TestBicicleta {
 
 	@Before
 	public void setUp() {
-		bicicleta = new Bicicleta("Ciudad", "Xiaomi", 5000, 30, 2, "Base", "Blanco");
+		bicicleta = new Bicicleta("Ciudad", "Xiaomi", 5000, 30, "carretera", "Base", "Blanco");
 	}
 	@Test
 	public void testGetModelo() {
@@ -31,7 +31,7 @@ public class TestBicicleta {
 	}
 	@Test
 	public void testGetRueda() {
-		assertEquals(2, bicicleta.getRueda());
+		assertEquals("carretera", bicicleta.getRueda());
 	}
 	@Test
 	public void testGetManillar() {

@@ -6,14 +6,14 @@ public class Patin extends Vehiculo{
 
 
 
-	public Patin(String modelo, String marca, int precio, int cv, int ruedas, String manillar,
+	public Patin(String modelo, String marca, int precio, int cv, String ruedas, String manillar,
 			String base) {
 		super(modelo, marca, precio, cv, ruedas, manillar);
 		this.base = base;
 	}
 
 	public Patin() {
-		super("", "", 0, 0, 0, "");
+		super("", "", 0, 0, "", "");
 		this.base = "";
 	}
 	

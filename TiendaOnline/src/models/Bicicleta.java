@@ -5,14 +5,14 @@ public class Bicicleta extends Vehiculo{
 	protected String sillin;
 
 
-	public Bicicleta(String modelo, String marca, int precio, int cv, int ruedas, String manillar,
+	public Bicicleta(String modelo, String marca, int precio, int cv, String ruedas, String manillar,
 			String sillin) {
 		super(modelo, marca, precio, cv, ruedas, manillar);
 		this.sillin = sillin;
 	}
 	
 	public Bicicleta() {
-		super("", "", 0, 0, 0, "");
+		super("", "", 0, 0, "", "");
 		this.sillin = "";
 	}
 	

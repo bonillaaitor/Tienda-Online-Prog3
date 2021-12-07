@@ -6,11 +6,11 @@ public abstract class Vehiculo {
 	protected String marca;
 	protected int precio;
 	protected int cv;
-	protected int ruedas;
+	protected String ruedas;
 	protected String manillar;
 	
 	
-	public Vehiculo(String modelo, String marca, int precio,int cv,int ruedas, String manillar) {
+	public Vehiculo(String modelo, String marca, int precio,int cv,String ruedas, String manillar) {
 		super();
 		this.modelo = modelo;
 		this.marca = marca;
@@ -26,7 +26,7 @@ public abstract class Vehiculo {
 		this.marca = "";
 		this.precio = 0;
 		this.cv= 0;
-		this.ruedas = 0;
+		this.ruedas = "";
 		this.manillar = "";
 		
 	}
@@ -72,11 +72,11 @@ public abstract class Vehiculo {
 	public void setCv(int cv) {
 		this.cv = cv;
 	}
-	public int getRueda() {
+	public String getRueda() {
 		return ruedas;
 	}
 
-	public void setRueda(int rueda) {
+	public void setRueda(String rueda) {
 		this.ruedas = rueda;
 	}
 	public String getManillar() {

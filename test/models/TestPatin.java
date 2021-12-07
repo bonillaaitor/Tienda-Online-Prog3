@@ -10,7 +10,7 @@ public class TestPatin {
 
 	@Before
 	public void setUp() {
-		patin = new Patin("Ciudad", "Xiaomi", 5000, 30, 2, "Base", "Blanco");
+		patin = new Patin("Ciudad", "Xiaomi", 5000, 30, "carretera", "Base", "Blanco");
 	}
 	@Test
 	public void testGetModelo() {
@@ -30,7 +30,7 @@ public class TestPatin {
 	}
 	@Test
 	public void testGetRueda() {
-		assertEquals(2, patin.getRueda());
+		assertEquals("carretera", patin.getRueda());
 	}
 	@Test
 	public void testGetManillar() {
