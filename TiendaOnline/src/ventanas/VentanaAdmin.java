@@ -20,6 +20,8 @@ public class VentanaAdmin extends JFrame {
 	private JPanel contentAdmin;
 	private final Action actionCerrarSesion = new botonCerrarSesion();
 	private final Action anyadirStock = new botonAnyadirStock();
+	private final Action importarClientes = new botonImportarClientes();
+	private final Action exportarClientes = new botonExportarClientes();
 
 	public VentanaAdmin() {
 		setTitle("ventana Admin");
@@ -43,18 +45,20 @@ public class VentanaAdmin extends JFrame {
 		botonVerPedidos.setBounds(428, 151, 151, 23);
 		contentAdmin.add(botonVerPedidos);
 		
-		JButton botonImportarProducto = new JButton("Importar Productos");
-		botonImportarProducto.setBounds(428, 202, 151, 23);
-		contentAdmin.add(botonImportarProducto);
+		JButton botonImportarClientes = new JButton("Importar Clientes");
+		botonImportarClientes.setAction(importarClientes);
+		botonImportarClientes.setBounds(428, 202, 151, 23);
+		contentAdmin.add(botonImportarClientes);
 		
 		JButton botonAnyadirStock = new JButton("Añadir Stock");
 		botonAnyadirStock.setAction(anyadirStock);
 		botonAnyadirStock.setBounds(428, 253, 151, 23);
 		contentAdmin.add(botonAnyadirStock);
 		
-		JButton botonExportarPedidos = new JButton("Exportar Pedidos");
-		botonExportarPedidos.setBounds(428, 304, 151, 23);
-		contentAdmin.add(botonExportarPedidos);
+		JButton botonExportarClientes = new JButton("Exportar Clientes");
+		botonExportarClientes.setBounds(428, 304, 151, 23);
+		botonExportarClientes.setAction(exportarClientes);
+		contentAdmin.add(botonExportarClientes);
 		
 		JLabel labelTitulo = new JLabel("Menu Administrador");
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
@@ -83,5 +87,29 @@ public class VentanaAdmin extends JFrame {
 			ventanaAnyadirStock.setVisible(true);
 			dispose();
 		}
+	
 	}
-}
+	private class botonImportarClientes extends AbstractAction {
+		public botonImportarClientes() {
+			putValue(NAME, "Importar Clientes");
+			putValue(SHORT_DESCRIPTION, "Importa los clientes al sistema");
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			VentanaImportarClientes ventanaImportarClientes = new VentanaImportarClientes();
+			ventanaImportarClientes.setVisible(true);
+			dispose();
+	    }
+	}
+		
+    private class botonExportarClientes extends AbstractAction {
+	public botonExportarClientes() {
+		putValue(NAME, "Exportar Clientes");
+		putValue(SHORT_DESCRIPTION, "Exporta los clientes al sistema");
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		VentanaExportarClientes ventanaExportarClientes = new VentanaExportarClientes();
+		ventanaExportarClientes.setVisible(true);
+		dispose();
+	}}}
