@@ -11,7 +11,6 @@ public abstract class Vehiculo {
 	
 	
 	public Vehiculo(String modelo, String marca, int precio,int cv,String ruedas, String manillar) {
-		super();
 		this.modelo = modelo;
 		this.marca = marca;
 		this.precio = precio;
@@ -21,25 +20,12 @@ public abstract class Vehiculo {
 	}
 	
 	public Vehiculo() {
-		super();
 		this.modelo = "";
 		this.marca = "";
 		this.precio = 0;
 		this.cv= 0;
 		this.ruedas = "";
 		this.manillar = "";
-		
-	}
-	
-	public Vehiculo(Vehiculo  v) {
-		super();
-		this.modelo = v.modelo;
-		this.marca = v.marca;
-		this.precio = v.precio;
-		this.cv= v.cv;
-		this.ruedas = v.ruedas;
-		this.manillar = v.manillar;
-		
 	}
 
 	public String getModelo() {
@@ -86,12 +72,11 @@ public abstract class Vehiculo {
 	public void setManillar(String manillar) {
 		this.manillar = manillar;
 	}
+
 	
 	
-	@Override
-	public String toString() {
-		return marca +" " + modelo + " " + precio + "€" + ",tiene" + cv + ruedas + " " + manillar + " ";
-	}
+	
+	
 
 	
 	

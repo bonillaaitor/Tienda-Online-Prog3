@@ -54,11 +54,7 @@ public abstract class Persona {
 		this.telefono = telefono;
 	}
 
-	@Override
-	public String toString() {
-		return "Persona [nombre=" + nombre + ", gmail=" + gmail + ", direccion=" + direccion + ", telefono=" + telefono
-				+ "]";
-	}
+	
 	
 	
 	

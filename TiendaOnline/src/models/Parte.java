@@ -3,12 +3,14 @@ package models;
 public class Parte {
 	
 	String nombre;
+	int tipo;
 	int precio;
 	int stock;
 	
-	public Parte(String nombre, int precio, int stock) {
+	public Parte(String nombre, int tipo, int precio, int stock) {
 		super();
 		this.nombre = nombre;
+		this.tipo = tipo;
 		this.precio = precio;
 		this.stock = stock;
 	}
@@ -16,6 +18,7 @@ public class Parte {
 	public Parte() {
 		super();
 		this.nombre = "";
+		this.tipo = 0;
 		this.precio = 0;
 		this.stock = 0;
 	}
@@ -26,6 +29,14 @@ public class Parte {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
 	}
 
 	public int getPrecio() {
@@ -46,8 +57,13 @@ public class Parte {
 
 	@Override
 	public String toString() {
-		return "Parte [nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + "]";
+		return "Parte [nombre=" + nombre + ", tipo=" + tipo + ", precio=" + precio + ", stock=" + stock + "]";
 	}
+	
+	
+	
+	
+	
 	
 	
 	

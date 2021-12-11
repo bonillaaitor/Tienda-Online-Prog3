@@ -12,13 +12,8 @@ public class Bicicleta extends Vehiculo{
 	}
 	
 	public Bicicleta() {
-		super("", "", 0, 0, "", "");
+		super();
 		this.sillin = "";
-	}
-	
-	public Bicicleta(Bicicleta b) {
-		super(b.modelo, b.marca, b.precio, b.cv, b.ruedas, b.manillar);
-		this.sillin = b.sillin;
 	}
 	
 	public String getSillin() {
@@ -31,8 +26,10 @@ public class Bicicleta extends Vehiculo{
 
 	@Override
 	public String toString() {
-		return marca + " " + modelo + " " +precio +"€" + "tiene" + cv +ruedas + " " + manillar + " " + sillin+ " ";
+		return "Bicicleta [sillin=" + sillin + "]";
 	}
+
+	
 	
 
 	

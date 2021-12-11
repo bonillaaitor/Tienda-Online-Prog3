@@ -13,14 +13,10 @@ public class Patin extends Vehiculo{
 	}
 
 	public Patin() {
-		super("", "", 0, 0, "", "");
+		super();
 		this.base = "";
 	}
 	
-	public Patin(Patin p) {
-		super(p.modelo, p.marca, p.precio, p.cv, p.ruedas, p.manillar);
-		this.base = p.base;
-	}
 	
 	public String getBase() {
 		return base;
@@ -32,8 +28,10 @@ public class Patin extends Vehiculo{
 
 	@Override
 	public String toString() {
-		return marca + " " + modelo + " " +precio +"€" + "tiene" + cv +ruedas + " " + manillar + " " + base+ " ";
+		return "Patin [base=" + base + ", modelo=" + modelo + ", marca=" + marca + ", precio=" + precio + ", cv=" + cv + ", ruedas=" + ruedas + ", manillar=" + manillar + "]";
 	}
+
+	
 	
 	
 }
