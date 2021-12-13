@@ -1,16 +1,7 @@
 package ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import bd.Bd;
-import models.Cliente;
-
-import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,13 +18,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
-import java.awt.Font;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import bd.Bd;
+import models.Administrador;
+import models.Cliente;
 
 public class VentanaAdmin extends JFrame {
 
@@ -42,8 +39,10 @@ public class VentanaAdmin extends JFrame {
 	private final Action anyadirStock = new botonAnyadirStock();
 	private final Action importarClientes = new botonImportarClientes();
 	private final Action exportarClientes = new botonExportarClientes();
+	protected Administrador ad;
 
-	public VentanaAdmin() {
+	public VentanaAdmin(Administrador a) {
+		ad = a;
 		setTitle("ventana Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
@@ -84,8 +83,24 @@ public class VentanaAdmin extends JFrame {
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		labelTitulo.setBounds(384, 38, 281, 35);
 		contentAdmin.add(labelTitulo);
+		
+		JButton botonNuevoCliente = new JButton("Añadir Cliente");
+		botonNuevoCliente.setBounds(428, 354, 151, 23);
+		contentAdmin.add(botonNuevoCliente);
+		
+		botonNuevoCliente.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaRegistro ventanaRegistro = new VentanaRegistro(a);
+				ventanaRegistro.setVisible(true);
+				dispose();
+
+			}
+		});
 	}
 
+	
 	private class botonCerrarSesion extends AbstractAction {
 		public botonCerrarSesion() {
 			putValue(NAME, "Cerrar Sesion");
@@ -107,7 +122,7 @@ public class VentanaAdmin extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			VentanaAnyadirStock ventanaAnyadirStock = new VentanaAnyadirStock();
+			VentanaAnyadirStock ventanaAnyadirStock = new VentanaAnyadirStock(ad);
 			ventanaAnyadirStock.setVisible(true);
 			dispose();
 		}

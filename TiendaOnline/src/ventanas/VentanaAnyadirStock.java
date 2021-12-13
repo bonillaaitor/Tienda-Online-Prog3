@@ -1,27 +1,30 @@
 package ventanas;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
+import models.Administrador;
 
 
 public class VentanaAnyadirStock extends JFrame {
 
 	private JPanel contentPanelAnyadirStock;
 	private final Action action = new BotonAtras();
+	protected Administrador ad;
 
-	public VentanaAnyadirStock() {
+	public VentanaAnyadirStock(Administrador a) {
+		ad = a;
 		setTitle("Añadir Stock");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
@@ -216,7 +219,7 @@ public class VentanaAnyadirStock extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Ir a la ventana anterior");
 		}
 		public void actionPerformed(ActionEvent e) {
-			VentanaAdmin ventanaAdmin = new VentanaAdmin();
+			VentanaAdmin ventanaAdmin = new VentanaAdmin(ad);
 			ventanaAdmin.setVisible(true);
 			dispose();
 		}

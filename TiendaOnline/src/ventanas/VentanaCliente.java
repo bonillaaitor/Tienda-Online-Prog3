@@ -1,18 +1,18 @@
 package ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import models.Cliente;
 
 public class VentanaCliente extends JFrame {
 
@@ -21,8 +21,10 @@ public class VentanaCliente extends JFrame {
 	private final Action cerrarSesion = new botonCerrarSesion();
 	private final Action crearPedido = new botonCrearPedido();
 	private final Action verPedido = new botonVerPedido();
+	protected Cliente cl;
 
-	public VentanaCliente() {
+	public VentanaCliente(Cliente c) { 
+		cl = c;
 		setTitle("ventana Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
@@ -93,7 +95,7 @@ public class VentanaCliente extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Ir a la ventana de creacion de pedido");
 		}
 		public void actionPerformed(ActionEvent e) {
-			VentanaCrearPedido ventanaCrearPedido = new VentanaCrearPedido();
+			VentanaCrearPedido ventanaCrearPedido = new VentanaCrearPedido(cl);
 			ventanaCrearPedido.setVisible(true);
 			dispose();
 		}
@@ -104,7 +106,7 @@ public class VentanaCliente extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Ver los pedidos realizados");
 		}
 		public void actionPerformed(ActionEvent e) {
-			VentanaVerPedidos ventanaVerPedidos = new VentanaVerPedidos();
+			VentanaVerPedidos ventanaVerPedidos = new VentanaVerPedidos(cl);
 			ventanaVerPedidos.setVisible(true);
 			dispose();
 		}

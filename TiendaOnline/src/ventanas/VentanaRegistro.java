@@ -1,40 +1,27 @@
 package ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicOptionPaneUI.ButtonActionListener;
-
-import bd.Bd;
-import models.Cliente;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.System.Logger.Level;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import bd.Bd;
+import models.Administrador;
+import models.Cliente;
 
 public class VentanaRegistro extends JFrame {
 
@@ -50,8 +37,10 @@ public class VentanaRegistro extends JFrame {
 	private JTextField textoTarjeta;
 	private final Action actionBotonAtras = new botonAtras();
 	private final Action actionBotonRegistro = new botonRegistro();
+	protected Administrador ad;
 
-	public VentanaRegistro() {
+	public VentanaRegistro(Administrador a) {
+		ad = a;
 		setTitle("Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
@@ -147,11 +136,24 @@ public class VentanaRegistro extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			VentanaInicio ventanaInicio = new VentanaInicio();
-			ventanaInicio.setVisible(true);
-			dispose();
+			
+			
+			if (ad == null) {
+				VentanaInicio ventanaInicio = new VentanaInicio();
+				ventanaInicio.setVisible(true);
+				dispose();
+				
+			} else {
+				
+				VentanaAdmin ventanaAdmin = new VentanaAdmin(ad);
+				ventanaAdmin.setVisible(true);
+				dispose();
+					
+				}
+			}
+			
 		}
-	}
+	
 	//Funcionalidad del boton para registrar un cliente en la base de datos
 	private class botonRegistro extends AbstractAction {
 		public botonRegistro() {

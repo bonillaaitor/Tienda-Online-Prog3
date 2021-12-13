@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import bd.Bd;
+import models.Administrador;
 import models.Cliente;
 
 import javax.swing.JLabel;
@@ -115,7 +116,8 @@ public class VentanaInicio extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			VentanaRegistro ventanaRegistro = new VentanaRegistro();
+			Administrador a = null;
+			VentanaRegistro ventanaRegistro = new VentanaRegistro(a);
 			ventanaRegistro.setVisible(true);
 			dispose();
 
@@ -173,13 +175,13 @@ public class VentanaInicio extends JFrame {
 				String password2 = cliente.getPassword();
 
 				if (usuario2.equals(usuario) && password2.equals(pass)) {
-					VentanaCliente ventanaCliente = new VentanaCliente();
+					VentanaCliente ventanaCliente = new VentanaCliente(cliente);
 					ventanaCliente.setVisible(true);
 					dispose();
 					break;
 
 				} else if (usuarioAdmin.equals(usuario) && passAdmin.equals(pass)) {
-					VentanaAdmin ventanaAdmin = new VentanaAdmin();
+					VentanaAdmin ventanaAdmin = new VentanaAdmin(new Administrador("Administrador", "joseperez@gmail.com", "Calle San Juan", "638987453", 1000));
 					ventanaAdmin.setVisible(true);
 					dispose();
 					break;

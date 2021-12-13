@@ -1,34 +1,28 @@
 package ventanas;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
-
-import models.Bicicleta;
-
-import javax.swing.JSpinner;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.JTable;
-import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.border.CompoundBorder;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+
+import models.Bicicleta;
+import models.Cliente;
 
 public class VentanaCrearPedido extends JFrame {
 
@@ -51,10 +45,11 @@ public class VentanaCrearPedido extends JFrame {
 	String valorSillinB;
 	
 	private final Action actionBotonAtras = new btnAtras();
+	protected Cliente cl;
 	
 
-	public VentanaCrearPedido() {
-		
+	public VentanaCrearPedido(Cliente c) {
+		cl = c;
 		setTitle("Crear Pedido");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
@@ -262,7 +257,7 @@ public class VentanaCrearPedido extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			VentanaCliente ventanaCliente = new VentanaCliente();
+			VentanaCliente ventanaCliente = new VentanaCliente(cl);
 			ventanaCliente.setVisible(true);
 			dispose();
 		}

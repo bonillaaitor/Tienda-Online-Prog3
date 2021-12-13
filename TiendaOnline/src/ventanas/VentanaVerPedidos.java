@@ -1,16 +1,18 @@
 package ventanas;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.AbstractAction;
-import java.awt.event.ActionEvent;
-import javax.swing.Action;
+import models.Cliente;
 
 
 public class VentanaVerPedidos extends JFrame {
@@ -19,8 +21,10 @@ public class VentanaVerPedidos extends JFrame {
 	private JTable table;
 	private JButton botonAtras;
 	private final Action action = new BotonAtras();
+	protected Cliente cl;
 
-	public VentanaVerPedidos() {
+	public VentanaVerPedidos(Cliente c) {
+		cl = c;
 		setTitle("Ver Pedidos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
@@ -51,7 +55,7 @@ public class VentanaVerPedidos extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Ir a la ventana anterior");
 		}
 		public void actionPerformed(ActionEvent e) {
-			VentanaCliente ventanaCliente = new VentanaCliente();
+			VentanaCliente ventanaCliente = new VentanaCliente(cl);
 			ventanaCliente.setVisible(true);
 			dispose();
 		}
