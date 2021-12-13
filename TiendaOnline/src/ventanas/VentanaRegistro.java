@@ -252,55 +252,5 @@ public class VentanaRegistro extends JFrame {
 		}
 	}
 	
-	//Prueba funcional de exportar datos de la bd a un csv
-	public void exportarCliente() {
-
-		Bd bd = new Bd();
-		bd.cargarDriver();
-		String csvFilePath = "TiendaOnline/bd/Clientes.csv";
-
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
-
-			// se crea el statemnt a partir de la conexión establecida
-			Statement stmt = conn.createStatement();
-			// usando el statement se ejecuta la consulta y se obtiene el resultado
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Cliente");
-
-			BufferedWriter fileWriter = new BufferedWriter(new FileWriter(csvFilePath));
-			fileWriter.write("email,password,nombre,direccion,telefono,num_tarjeta");
-			// se recorre el resulset fila a fila
-			while (rs.next()) {
-				// se obtienen las columnas
-				String gmail = rs.getString("email");
-				String password = rs.getString("password");
-				String nombre = rs.getString("nombre");
-				String direccion = rs.getString("direccion");
-				String telefono = rs.getString("telefono");
-				String tarjeta = rs.getString("num_tarjeta");
-
-				String line = String.format("%s,%s,%s,%s,%s,%s", gmail, password, nombre, direccion, telefono, tarjeta);
-
-				fileWriter.newLine();
-				fileWriter.write(line);
-
-			}
-
-			rs.close();
-			stmt.close();
-			fileWriter.close();
-			conn.close(); // es importante desconectar la conexión al terminar
-
-		} catch (SQLException e) {
-			System.out.println("No se ha podido conectar a la base de datos.");
-			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			System.out.println("File IO error:");
-			e.printStackTrace();
-		}
-		
-
-	}
-	
 	
 }
