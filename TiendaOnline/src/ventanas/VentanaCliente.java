@@ -43,13 +43,13 @@ public class VentanaCliente extends JFrame {
 		botonVerPedido.setBounds(415, 241, 157, 23);
 		contentPanelUsuario.add(botonVerPedido);
 		
-		JButton botonModificarPedido = new JButton("Modificar Pedido");
-		botonModificarPedido.addActionListener(new ActionListener() {
+		JButton botonEliminarPedido = new JButton("Eliminar Pedido");
+		botonEliminarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		botonModificarPedido.setBounds(415, 296, 157, 23);
-		contentPanelUsuario.add(botonModificarPedido);
+		botonEliminarPedido.setBounds(415, 296, 157, 23);
+		contentPanelUsuario.add(botonEliminarPedido);
 		
 		JButton botonEliminarCuenta = new JButton("Eliminar Cuenta");
 		botonEliminarCuenta.setAction(eliminarCuenta);
