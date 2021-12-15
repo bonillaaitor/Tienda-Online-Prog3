@@ -22,6 +22,7 @@ public class VentanaCliente extends JFrame {
 	private final Action crearPedido = new botonCrearPedido();
 	private final Action verPedido = new botonVerPedido();
 	protected Cliente cl;
+	private final Action action = new botonEliminarPedido();
 
 	public VentanaCliente(Cliente c) { 
 		cl = c;
@@ -44,6 +45,7 @@ public class VentanaCliente extends JFrame {
 		contentPanelUsuario.add(botonVerPedido);
 		
 		JButton botonEliminarPedido = new JButton("Eliminar Pedido");
+		botonEliminarPedido.setAction(action);
 		botonEliminarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -95,8 +97,8 @@ public class VentanaCliente extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Ir a la ventana de creacion de pedido");
 		}
 		public void actionPerformed(ActionEvent e) {
-			VentanaCrearPedido ventanaCrearPedido = new VentanaCrearPedido(cl);
-			ventanaCrearPedido.setVisible(true);
+			VentanaCrearPedidoIntermedia VentanaCrearPedidoIntermedia = new VentanaCrearPedidoIntermedia(cl);
+			VentanaCrearPedidoIntermedia.setVisible(true);
 			dispose();
 		}
 	}
@@ -112,4 +114,15 @@ public class VentanaCliente extends JFrame {
 		}
 	}
 
+	private class botonEliminarPedido extends AbstractAction {
+		public botonEliminarPedido() {
+			putValue(NAME, "Eliminar Pedido");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaEliminarPedido ventanaEliminarPedido = new VentanaEliminarPedido(cl);
+			ventanaEliminarPedido.setVisible(true);
+			dispose();
+		}
+	}
 }

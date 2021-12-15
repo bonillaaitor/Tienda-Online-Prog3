@@ -114,7 +114,7 @@ public class VentanaEliminarCuenta extends JFrame {
             System.out.println(e.getMessage());
         }
     }
-		
+
 	private class botonEliminar extends AbstractAction {
 		public botonEliminar() {
 			putValue(NAME, "Eliminar");
