@@ -34,13 +34,18 @@ import models.Cliente;
 
 public class VentanaAdmin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentAdmin;
 	private final Action actionCerrarSesion = new botonCerrarSesion();
 	private final Action anyadirStock = new botonAnyadirStock();
 	private final Action importarClientes = new botonImportarClientes();
 	private final Action exportarClientes = new botonExportarClientes();
+	private final Action verPedidos = new botonVerPedidos();
 	protected Administrador ad;
-
+	
 	public VentanaAdmin(Administrador a) {
 		ad = a;
 		setTitle("ventana Admin");
@@ -61,6 +66,7 @@ public class VentanaAdmin extends JFrame {
 		contentAdmin.add(botonCerrarSesion);
 
 		JButton botonVerPedidos = new JButton("Ver Pedidos");
+		botonVerPedidos.setAction(verPedidos);
 		botonVerPedidos.setBounds(428, 151, 151, 23);
 		contentAdmin.add(botonVerPedidos);
 
@@ -102,6 +108,11 @@ public class VentanaAdmin extends JFrame {
 
 	
 	private class botonCerrarSesion extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public botonCerrarSesion() {
 			putValue(NAME, "Cerrar Sesion");
 			putValue(SHORT_DESCRIPTION, "volver al menu de inicio");
@@ -116,6 +127,11 @@ public class VentanaAdmin extends JFrame {
 	}
 
 	private class botonAnyadirStock extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public botonAnyadirStock() {
 			putValue(NAME, "Añadir Stock");
 			putValue(SHORT_DESCRIPTION, "Añadir stock de uno o varios productos");
@@ -130,6 +146,11 @@ public class VentanaAdmin extends JFrame {
 	}
 
 	private class botonImportarClientes extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public botonImportarClientes() {
 			putValue(NAME, "Importar Clientes");
 			putValue(SHORT_DESCRIPTION, "Importa los clientes al sistema");
@@ -142,6 +163,11 @@ public class VentanaAdmin extends JFrame {
 	}
 
 	private class botonExportarClientes extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public botonExportarClientes() {
 			putValue(NAME, "Exportar Clientes");
 			putValue(SHORT_DESCRIPTION, "Exporta los clientes al sistema");
@@ -150,6 +176,22 @@ public class VentanaAdmin extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			exportarCliente();
 			JOptionPane.showMessageDialog(contentAdmin, "Clientes exportados correctamente a csv en carpeta files");
+		}
+	}
+	
+	private class botonVerPedidos extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		public botonVerPedidos() {
+			putValue(NAME, "Ver Pedidos");
+			putValue(SHORT_DESCRIPTION, "Mostrar los pedidos de todos los usuarios");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaVerPedidosAdmin VentanaVerPedidosAdmin = new VentanaVerPedidosAdmin(ad);
+			VentanaVerPedidosAdmin.setVisible(true);
+			dispose();
 		}
 	}
 
@@ -244,7 +286,7 @@ public class VentanaAdmin extends JFrame {
 			try (Scanner scanner = new Scanner(System.in)) {
 				PreparedStatement stmt = conn.prepareStatement(
 						"INSERT INTO Cliente (nombre, usuario, password, email, direccion, telefono, num_tarjeta) VALUES (?, ?, ?, ?, ?, ?, ?)");
-				for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
+				for (Iterator<Cliente> iterator = clientes.iterator(); iterator.hasNext();) {
 					Cliente cliente = (Cliente) iterator.next();
 					stmt.setString(1, cliente.getNombre());
 					stmt.setString(2, cliente.getUsuario());
@@ -268,4 +310,5 @@ public class VentanaAdmin extends JFrame {
 		}
 
 	}
+	
 }

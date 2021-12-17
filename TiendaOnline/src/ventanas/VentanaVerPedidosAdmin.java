@@ -26,11 +26,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import bd.Bd;
-import models.Cliente;
+import models.Administrador;
 import models.Pedido;
 
 
-public class VentanaVerPedidos extends JFrame {
+public class VentanaVerPedidosAdmin extends JFrame {
 
 	/**
 	 * 
@@ -40,13 +40,13 @@ public class VentanaVerPedidos extends JFrame {
 	private JTable tablaVerPedidos;
 	private JButton botonAtras;
 	private final Action action = new BotonAtras();
-	protected Cliente cl;
+	protected Administrador ad;
 	private final Action action_1 = new CargarPedidos();
 	private DefaultTableModel mDatosPedido;
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
-	public VentanaVerPedidos(Cliente c) {
-		cl = c;
+	public VentanaVerPedidosAdmin(Administrador a) {
+		ad = a;
 		setTitle("Ver Pedidos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
@@ -140,8 +140,8 @@ public class VentanaVerPedidos extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Ir a la ventana anterior");
 		}
 		public void actionPerformed(ActionEvent e) {
-			VentanaCliente ventanaCliente = new VentanaCliente(cl);
-			ventanaCliente.setVisible(true);
+			VentanaAdmin ventanaAdmin = new VentanaAdmin(ad);
+			ventanaAdmin.setVisible(true);
 			dispose();
 		}
 	}
