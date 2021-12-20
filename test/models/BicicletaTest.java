@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestBicicleta {
+public class BicicletaTest {
 
 	Bicicleta bicicleta;
 

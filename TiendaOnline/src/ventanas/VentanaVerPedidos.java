@@ -6,10 +6,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.Vector;
 
 import javax.swing.AbstractAction;
@@ -84,10 +86,16 @@ public class VentanaVerPedidos extends JFrame {
 			
 			try {
 				Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
-															
-				Statement stmt = conn.createStatement();
+				String usuario = new String(VentanaInicio.textoUsuario.getText());										
+				
+				try (Scanner scanner = new Scanner(System.in)) {
+					
+					PreparedStatement stmt = conn.prepareStatement(
+						"SELECT idP, clienteUsuario, fechaP, fechaE, precioTotal FROM Pedido where clienteUsuario = ? ");	
+						
+				stmt.setString(1, usuario);
 
-				ResultSet rs = stmt.executeQuery("SELECT idP, clienteUsuario, fechaP, fechaE, precioTotal FROM Pedido");
+				ResultSet rs = stmt.executeQuery();
 				
 				while (rs.next()) {	
 				int idP = rs.getInt("idP");	
@@ -118,9 +126,9 @@ public class VentanaVerPedidos extends JFrame {
 				tablaVerPedidos.getColumnModel().getColumn(2).setCellRenderer(Alinear);
 				tablaVerPedidos.getColumnModel().getColumn(3).setCellRenderer(Alinear);
 				tablaVerPedidos.getColumnModel().getColumn(4).setCellRenderer(Alinear);
-				}			
-				  
-	        stmt.close(); 
+				}	
+				}
+
 	        conn.close();
 	            
 	      } catch ( Exception e ) {

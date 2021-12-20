@@ -63,7 +63,7 @@ public class VentanaVerPedidosAdmin extends JFrame {
 		tablaVerPedidos = new JTable();
 		tablaVerPedidos.setFont(new Font("Arial", Font.PLAIN, 14));
 		tablaVerPedidos.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tablaVerPedidos.setBounds(233, 147, 571, 286);
+		tablaVerPedidos.setBounds(233, 147, 571, 315);
 		contentPanelVerPedidos.add(tablaVerPedidos);
 		
 		botonAtras = new JButton("botonAtras");
