@@ -59,13 +59,13 @@ public class VentanaVerPedidos extends JFrame {
 		
 		JLabel labelTitulo = new JLabel("Lista de pedidos");
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		labelTitulo.setBounds(427, 30, 213, 43);
+		labelTitulo.setBounds(427, 32, 213, 43);
 		contentPanelVerPedidos.add(labelTitulo);
 		
 		tablaVerPedidos = new JTable();
 		tablaVerPedidos.setFont(new Font("Arial", Font.PLAIN, 14));
 		tablaVerPedidos.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tablaVerPedidos.setBounds(233, 147, 571, 286);
+		tablaVerPedidos.setBounds(233, 196, 571, 193);
 		contentPanelVerPedidos.add(tablaVerPedidos);
 		
 		botonAtras = new JButton("botonAtras");
@@ -75,7 +75,7 @@ public class VentanaVerPedidos extends JFrame {
 		
 		JButton botonCargarPedidos = new JButton("New button");
 		botonCargarPedidos.setAction(action_1);
-		botonCargarPedidos.setBounds(456, 105, 134, 23);
+		botonCargarPedidos.setBounds(450, 150, 134, 23);
 		contentPanelVerPedidos.add(botonCargarPedidos);
 		
 	}
