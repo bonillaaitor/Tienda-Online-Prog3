@@ -13,6 +13,8 @@ import bd.Bd;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
@@ -86,33 +88,45 @@ public class VentanaEliminarCuenta extends JFrame {
 			dispose();
 		}
 	}
-	
-	public void eliminarCuenta(){
+	public void eliminarCuenta() throws SQLException{
 		Bd bd =  new Bd();
 		bd.cargarDriver();
 		
 		String usuario = new String(textoUsuario.getText());
         String pass = new String(textoPassword.getPassword());
-       
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
-            try (Scanner scanner = new Scanner(System.in)) {
-                PreparedStatement stmt = conn.prepareStatement(
-                        "DELETE FROM Cliente WHERE usuario =? AND password =? ");
-                		//"DELETE nombre, usuario, password, email,direccion, telefono,num_tarjeta FROM Cliente WHERE nombre ='?' AND password ='?'");
-                stmt.setString(1, usuario);
-                stmt.setString(2, pass);
+        int result = Bd.comprobarUsuario(usuario, pass);
+        if(result == 0){
+        	JOptionPane.showMessageDialog(null, "Usuario no encontrado en la base de datos");
+ 
+        }else if(result == 1){
+        	JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+        }else if(result == 2) {
+        	
+        	try {
+                Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+                try (Scanner scanner = new Scanner(System.in)) {
+                    PreparedStatement stmt = conn.prepareStatement(
+                            "DELETE FROM Cliente WHERE usuario =? AND password =? ");
+                    		//"DELETE nombre, usuario, password, email,direccion, telefono,num_tarjeta FROM Cliente WHERE nombre ='?' AND password ='?'");
+                    stmt.setString(1, usuario);
+                    stmt.setString(2, pass);
+                   
+                    stmt.executeUpdate();
+                    stmt.close();
+                }
+                conn.close();
                
-                stmt.executeUpdate();
-                stmt.close();
+
+            } catch (SQLException e) {
+                System.out.println("No se ha podido conectar a la base de datos.");
+                System.out.println(e.getMessage());
             }
-
-            conn.close();
-
-        } catch (SQLException e) {
-            System.out.println("No se ha podido conectar a la base de datos.");
-            System.out.println(e.getMessage());
+        	JOptionPane.showMessageDialog(null, "Cuenta eliminada con exito");
+        	VentanaInicio ventanaInicio = new VentanaInicio();
+ 			ventanaInicio.setVisible(true);
+ 			dispose();
         }
+        
     }
 
 	private class botonEliminar extends AbstractAction {
@@ -121,10 +135,13 @@ public class VentanaEliminarCuenta extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Eliminar la cuenta");
 		}
 		public void actionPerformed(ActionEvent e) {
-			eliminarCuenta();
-			VentanaInicio ventanaInicio = new VentanaInicio();
-			ventanaInicio.setVisible(true);
-			dispose();
+			try {
+				eliminarCuenta();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		
+			
 		}
 	}
 	}

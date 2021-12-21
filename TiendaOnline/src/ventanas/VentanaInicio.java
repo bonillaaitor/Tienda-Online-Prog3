@@ -185,6 +185,12 @@ public class VentanaInicio extends JFrame {
 					ventanaAdmin.setVisible(true);
 					dispose();
 					break;
+				}else {
+					
+					JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos");
+					
+					
+					
 				}
 				
 				rs.close();

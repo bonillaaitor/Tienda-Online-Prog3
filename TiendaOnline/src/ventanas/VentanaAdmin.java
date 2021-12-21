@@ -157,7 +157,8 @@ public class VentanaAdmin extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			importarCliente();
+			Bd bd = new Bd();
+			bd.importarCliente();
 			JOptionPane.showMessageDialog(contentAdmin, "Clientes importados correctamente desde fichero csv en la carpeta files");
 		}
 	}
@@ -174,7 +175,8 @@ public class VentanaAdmin extends JFrame {
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
-			exportarCliente();
+			Bd bd = new Bd();
+			bd.exportarCliente();
 			JOptionPane.showMessageDialog(contentAdmin, "Clientes exportados correctamente a csv en carpeta files");
 		}
 	}
@@ -195,120 +197,8 @@ public class VentanaAdmin extends JFrame {
 		}
 	}
 
-	public void exportarCliente() {
+	
 
-		Bd bd = new Bd();
-		bd.cargarDriver();
-		String csvFilePath = "TiendaOnline/files/Clientes.csv";
 
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
-
-			// se crea el statemnt a partir de la conexión establecida
-			Statement stmt = conn.createStatement();
-			// usando el statement se ejecuta la consulta y se obtiene el resultado
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Cliente");
-
-			BufferedWriter fileWriter = new BufferedWriter(new FileWriter(csvFilePath));
-			fileWriter.write("nombre,usuario,password,email,direccion,telefono,num_tarjeta");
-			// se recorre el resulset fila a fila
-			while (rs.next()) {
-				// se obtienen las columnas
-				String gmail = rs.getString("email");
-				String password = rs.getString("password");
-				String nombre = rs.getString("nombre");
-				String direccion = rs.getString("direccion");
-				String telefono = rs.getString("telefono");
-				String tarjeta = rs.getString("num_tarjeta");
-				String usuario = rs.getString("usuario");
-
-				String line = String.format("%s,%s,%s,%s,%s,%s,%s", nombre, usuario, password, gmail, direccion,
-						telefono, tarjeta);
-
-				fileWriter.newLine();
-				fileWriter.write(line);
-
-			}
-
-			rs.close();
-			stmt.close();
-			fileWriter.close();
-			conn.close(); // es importante desconectar la conexión al terminar
-
-		} catch (SQLException e) {
-			System.out.println("No se ha podido conectar a la base de datos.");
-			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			System.out.println("File IO error:");
-			e.printStackTrace();
-		}
-
-	}
-
-	public void importarCliente() {
-
-		List<Cliente> clientes = new ArrayList<>();
-
-		try (BufferedReader reader = new BufferedReader(new FileReader("TiendaOnline/files/ClientesAnadir.csv"))) {
-			// leemos la primera línea y la ignoramos
-			reader.readLine();
-
-			String linea = null;
-			while ((linea = reader.readLine()) != null) {
-				// partimos la línea en partes por el delimitador
-				String[] campos = linea.split(",");
-
-				// obtenemos cada campo del registro y lo convertimos
-				// al formato en el que se va a almacenar en el usuario
-				String nombre = campos[0]; 
-				String usuario = campos[3]; 
-				String password = campos[4]; 
-				String gmail = campos[5]; 
-				String direccion = campos[1]; 
-				String telefono = campos[2]; 
-				String tarjeta = campos[6]; 
-
-				// creamos un usuario nuevo con los datos y
-				// lo añadimos a la lista de usuarios
-				Cliente c = new Cliente(nombre, usuario, password, gmail, direccion, telefono, tarjeta);
-				System.out.println(c);
-				clientes.add(c);
-			}
-		} catch (IOException e) {
-			System.out.println("No se ha podido leer el fichero CSV.");
-		}
-		
-		Bd bd = new Bd();
-		bd.cargarDriver();
-
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
-			try (Scanner scanner = new Scanner(System.in)) {
-				PreparedStatement stmt = conn.prepareStatement(
-						"INSERT INTO Cliente (nombre, usuario, password, email, direccion, telefono, num_tarjeta) VALUES (?, ?, ?, ?, ?, ?, ?)");
-				for (Iterator<Cliente> iterator = clientes.iterator(); iterator.hasNext();) {
-					Cliente cliente = (Cliente) iterator.next();
-					stmt.setString(1, cliente.getNombre());
-					stmt.setString(2, cliente.getUsuario());
-					stmt.setString(3, cliente.getPassword());
-					stmt.setString(4, cliente.getGmail());
-					stmt.setString(5, cliente.getDireccion());
-					stmt.setString(6, cliente.getTelefono());
-					stmt.setString(7, cliente.getTarjeta());
-
-					stmt.executeUpdate();
-				}
-
-				stmt.close();
-			}
-
-			conn.close();
-
-		} catch (SQLException e) {
-			System.out.println("No se ha podido conectar a la base de datos.");
-			System.out.println(e.getMessage());
-		}
-
-	}
 	
 }
