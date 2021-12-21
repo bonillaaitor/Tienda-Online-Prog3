@@ -95,7 +95,11 @@ public class VentanaInicio extends JFrame {
 	        @Override
 	        public void keyPressed(KeyEvent e) {
 	            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-	            	loginTiendaOnline();
+	            	try {
+						loginTiendaOnline();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 	            }
 	        }
 
@@ -135,19 +139,24 @@ public class VentanaInicio extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			
-					loginTiendaOnline();
+					try {
+						loginTiendaOnline();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				
 
 			};
 	}
 			
 
-	public void loginTiendaOnline() {
+	public void loginTiendaOnline() throws SQLException {
 		Bd bd = new Bd();
 		bd.cargarDriver();
-
+		
 		String usuario = new String(textoUsuario.getText());
 		String pass = new String(textoContra.getPassword());
+		int result = Bd.comprobarUsuario(usuario, pass);
 		String usuarioAdmin = "admin";
 		String passAdmin = "admin";
 		System.out.println(usuario);
@@ -185,9 +194,10 @@ public class VentanaInicio extends JFrame {
 					ventanaAdmin.setVisible(true);
 					dispose();
 					break;
-				}else {
+				}else if(result == 0 || result == 1) {
 					
 					JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos");
+					break;
 					
 					
 					
