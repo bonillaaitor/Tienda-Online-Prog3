@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import bd.Bd;
 import models.Administrador;
 import models.Cliente;
+import ventanas.VentanaDeCarga;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -184,8 +185,8 @@ public class VentanaInicio extends JFrame {
 				String password2 = cliente.getPassword();
 
 				if (usuario2.equals(usuario) && password2.equals(pass)) {
-					VentanaCliente ventanaCliente = new VentanaCliente(cliente);
-					ventanaCliente.setVisible(true);
+					VentanaDeCarga VentanaDeCarga = new VentanaDeCarga();
+					VentanaDeCarga.setVisible(true);
 					dispose();
 					break;
 
