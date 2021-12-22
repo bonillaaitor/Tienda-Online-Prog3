@@ -212,7 +212,7 @@ public class Bd {
 
 			try (Scanner scanner = new Scanner(System.in)) {
 
-				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM Parte WHERE Tipo = 'Modelo'");
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Modelo'");
 
 				ResultSet rs = stmt.executeQuery();
 
@@ -242,7 +242,7 @@ public class Bd {
 
 			try (Scanner scanner = new Scanner(System.in)) {
 
-				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM Parte WHERE Tipo = 'Marca'");
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Marca'");
 
 				ResultSet rs = stmt.executeQuery();
 
@@ -272,7 +272,7 @@ public class Bd {
 
 			try (Scanner scanner = new Scanner(System.in)) {
 
-				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM Parte WHERE Tipo = 'Cv'");
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Cv'");
 
 				ResultSet rs = stmt.executeQuery();
 
@@ -302,7 +302,7 @@ public class Bd {
 
 			try (Scanner scanner = new Scanner(System.in)) {
 
-				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM Parte WHERE Tipo = 'Rueda'");
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Rueda'");
 
 				ResultSet rs = stmt.executeQuery();
 
@@ -332,7 +332,7 @@ public class Bd {
 
 			try (Scanner scanner = new Scanner(System.in)) {
 
-				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM Parte WHERE Tipo = 'Manillar'");
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Manillar'");
 
 				ResultSet rs = stmt.executeQuery();
 
@@ -362,7 +362,7 @@ public class Bd {
 
 			try (Scanner scanner = new Scanner(System.in)) {
 
-				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM Parte WHERE Tipo = 'Sillin'");
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Sillin'");
 
 				ResultSet rs = stmt.executeQuery();
 
@@ -392,7 +392,7 @@ public class Bd {
 			try (Scanner scanner = new Scanner(System.in)) {
 
 				PreparedStatement stmt = conn
-						.prepareStatement("SELECT Precio FROM Parte WHERE Nombre = ? AND Tipo = 'Modelo'");
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Modelo'");
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
@@ -420,7 +420,7 @@ public class Bd {
 			try (Scanner scanner = new Scanner(System.in)) {
 
 				PreparedStatement stmt = conn
-						.prepareStatement("SELECT Precio FROM Parte WHERE Nombre = ? AND Tipo = 'Marca'");
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Marca'");
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
@@ -448,7 +448,7 @@ public class Bd {
 			try (Scanner scanner = new Scanner(System.in)) {
 
 				PreparedStatement stmt = conn
-						.prepareStatement("SELECT Precio FROM Parte WHERE Nombre = ? AND Tipo = 'Cv'");
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Cv'");
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
@@ -478,7 +478,7 @@ public class Bd {
 			try (Scanner scanner = new Scanner(System.in)) {
 
 				PreparedStatement stmt = conn
-						.prepareStatement("SELECT Precio FROM Parte WHERE Nombre = ? AND Tipo = 'Rueda'");
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Rueda'");
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
@@ -508,7 +508,7 @@ public class Bd {
 			try (Scanner scanner = new Scanner(System.in)) {
 
 				PreparedStatement stmt = conn
-						.prepareStatement("SELECT Precio FROM Parte WHERE Nombre = ? AND Tipo = 'Manillar'");
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Manillar'");
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
@@ -538,7 +538,7 @@ public class Bd {
 			try (Scanner scanner = new Scanner(System.in)) {
 
 				PreparedStatement stmt = conn
-						.prepareStatement("SELECT Precio FROM Parte WHERE Nombre = ? AND Tipo = 'Sillin'");
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Sillin'");
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
