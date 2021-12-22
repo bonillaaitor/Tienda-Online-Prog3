@@ -36,7 +36,7 @@ import javax.swing.Action;
 public class VentanaInicio extends JFrame {
 
 	private JPanel contentPanel;
-	static JTextField textoUsuario;
+	public static JTextField textoUsuario;
 	private JPasswordField textoContra;
 	private final Action actionBotonRegistro = new botonRegistro();
 	private final Action actionBotonLogin = new botonLogin();

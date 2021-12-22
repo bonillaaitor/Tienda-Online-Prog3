@@ -56,6 +56,7 @@ public class VentanaCrearPedido extends JFrame {
 	protected Cliente cl;
 
 	public VentanaCrearPedido(Cliente c) {
+		Bd bd = new Bd();
 		cl = c;
 		setTitle("Crear Bici");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,32 +106,32 @@ public class VentanaCrearPedido extends JFrame {
 		contentPanelCrearPedido.add(labelSillinB);
 
 		JComboBox comboBoxModeloB = new JComboBox();
-		cargarModeloB(comboBoxModeloB);
+		bd.cargarModeloB(comboBoxModeloB);
 		comboBoxModeloB.setBounds(375, 381, 94, 22);
 		contentPanelCrearPedido.add(comboBoxModeloB);
 
 		JComboBox comboBoxMarcaB = new JComboBox();
-		comboBoxMarcaB.setModel(new DefaultComboBoxModel(new String[] { "Xiaomi", "Bezior" }));
+		bd.cargarMarcaB(comboBoxMarcaB);
 		comboBoxMarcaB.setBounds(375, 414, 94, 22);
 		contentPanelCrearPedido.add(comboBoxMarcaB);
 
 		JComboBox comboBoxCvB = new JComboBox();
-		comboBoxCvB.setModel(new DefaultComboBoxModel(new String[] { "50", "60" }));
+		bd.cargarCvB(comboBoxCvB);
 		comboBoxCvB.setBounds(375, 454, 94, 22);
 		contentPanelCrearPedido.add(comboBoxCvB);
 
 		JComboBox comboBoxManillarB = new JComboBox();
-		comboBoxManillarB.setModel(new DefaultComboBoxModel(new String[] { "Base", "Doble Altura" }));
+		bd.cargarManillarB(comboBoxManillarB);
 		comboBoxManillarB.setBounds(631, 381, 93, 22);
 		contentPanelCrearPedido.add(comboBoxManillarB);
 
 		JComboBox comboBoxSillinB = new JComboBox();
-		comboBoxSillinB.setModel(new DefaultComboBoxModel(new String[] { "Sport", "Estandar" }));
+		bd.cargarSillinB(comboBoxSillinB);
 		comboBoxSillinB.setBounds(631, 414, 94, 22);
 		contentPanelCrearPedido.add(comboBoxSillinB);
 
 		JComboBox comboBoxRuedasB = new JComboBox();
-		comboBoxRuedasB.setModel(new DefaultComboBoxModel(new String[] { "Carretera", "Monta\u00F1a" }));
+		bd.cargarRuedasB(comboBoxRuedasB);
 		comboBoxRuedasB.setBounds(632, 454, 92, 22);
 		contentPanelCrearPedido.add(comboBoxRuedasB);
 
@@ -146,6 +147,7 @@ public class VentanaCrearPedido extends JFrame {
 				valorRuedasB = comboBoxRuedasB.getSelectedItem().toString();
 				valorManillarB = comboBoxManillarB.getSelectedItem().toString();
 				valorSillinB = comboBoxSillinB.getSelectedItem().toString();
+			
 
 				int valorCvBInt = Integer.parseInt(valorCvB);
 				int precioBicicleta;
@@ -212,33 +214,4 @@ public class VentanaCrearPedido extends JFrame {
 
 	}
 
-	public void cargarModeloB(JComboBox<String> cb) {
-		Bd bd = new Bd();
-		bd.cargarDriver();
-
-		try {
-			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
-			String usuario = new String(VentanaInicio.textoUsuario.getText());
-
-			try (Scanner scanner = new Scanner(System.in)) {
-
-				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM Parte WHERE Tipo = 'Modelo'");
-
-				ResultSet rs = stmt.executeQuery();
-
-				while (rs.next()) {
-					String Nombre = rs.getString("Nombre");
-					cb.addItem(Nombre);
-				}
-			}
-			
-			conn.close();
-
-		} catch (Exception e) {
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.out.println("No se ha podido conectar a la base de datos.");
-			System.exit(0);
-		}
-
-	}
 }
