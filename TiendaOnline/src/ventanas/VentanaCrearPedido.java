@@ -41,8 +41,6 @@ public class VentanaCrearPedido extends JFrame {
 	private DefaultTableModel mDatosBici;
 	private ArrayList<Bicicleta> pedidoBicis = new ArrayList();
 
-	private DefaultTableModel mDatosPatin;
-	private ArrayList<Bicicleta> pedidoPatines = new ArrayList();
 
 	String valorModeloB;
 	String valorMarcaB;
@@ -71,10 +69,6 @@ public class VentanaCrearPedido extends JFrame {
 		tablaCrearPedidoBici.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		tablaCrearPedidoBici.setBounds(10, 40, 1014, 277);
 		contentPanelCrearPedido.add(tablaCrearPedidoBici);
-
-		Vector<String> cabecerasPatin = new Vector<String>(
-				Arrays.asList("Modelo", "Marca", "Precio", "Cv", "Ruedas", "Manillar", "Base"));
-		mDatosPatin = new DefaultTableModel(new Vector<Vector<Object>>(), cabecerasPatin);
 
 		JLabel labelBicicleta = new JLabel("Crea tu bicicleta");
 		labelBicicleta.setFont(new Font("Times New Roman", Font.PLAIN, 15));

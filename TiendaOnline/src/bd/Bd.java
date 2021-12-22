@@ -231,6 +231,36 @@ public class Bd {
 		}
 
 	}
+	
+	public void cargarModeloP(JComboBox<String> cp) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+			String usuario = new String(VentanaInicio.textoUsuario.getText());
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteP WHERE Tipo = 'Modelo'");
+
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					String Nombre = rs.getString("Nombre");
+					cp.addItem(Nombre);
+				}
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+
+	}
 
 	public void cargarMarcaB(JComboBox<String> cb) {
 		Bd bd = new Bd();
@@ -249,6 +279,36 @@ public class Bd {
 				while (rs.next()) {
 					String Nombre = rs.getString("Nombre");
 					cb.addItem(Nombre);
+				}
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+
+	}
+	
+	public void cargarMarcaP(JComboBox<String> cp) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+			String usuario = new String(VentanaInicio.textoUsuario.getText());
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Marca'");
+
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					String Nombre = rs.getString("Nombre");
+					cp.addItem(Nombre);
 				}
 			}
 
@@ -291,6 +351,36 @@ public class Bd {
 		}
 
 	}
+	
+	public void cargarCvP(JComboBox<String> cp) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+			String usuario = new String(VentanaInicio.textoUsuario.getText());
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Cv'");
+
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					String Nombre = rs.getString("Nombre");
+					cp.addItem(Nombre);
+				}
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+
+	}
 
 	public void cargarRuedasB(JComboBox<String> cb) {
 		Bd bd = new Bd();
@@ -309,6 +399,36 @@ public class Bd {
 				while (rs.next()) {
 					String Nombre = rs.getString("Nombre");
 					cb.addItem(Nombre);
+				}
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+
+	}
+	
+	public void cargarRuedasP(JComboBox<String> cp) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+			String usuario = new String(VentanaInicio.textoUsuario.getText());
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Rueda'");
+
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					String Nombre = rs.getString("Nombre");
+					cp.addItem(Nombre);
 				}
 			}
 
@@ -351,6 +471,36 @@ public class Bd {
 		}
 
 	}
+	
+	public void cargarManillarP(JComboBox<String> cp) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+			String usuario = new String(VentanaInicio.textoUsuario.getText());
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Manillar'");
+
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					String Nombre = rs.getString("Nombre");
+					cp.addItem(Nombre);
+				}
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+
+	}
 
 	public void cargarSillinB(JComboBox<String> cb) {
 		Bd bd = new Bd();
@@ -381,8 +531,66 @@ public class Bd {
 		}
 
 	}
+	
+	public void cargarBaseP(JComboBox<String> cp) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+			String usuario = new String(VentanaInicio.textoUsuario.getText());
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn.prepareStatement("SELECT Nombre FROM ParteB WHERE Tipo = 'Sillin'");
+
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					String Nombre = rs.getString("Nombre");
+					cp.addItem(Nombre);
+				}
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+
+	}
 
 	public int precioModeloB(String p) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		int Precio = 0;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Modelo'");
+				stmt.setString(1, p);
+				ResultSet rs = stmt.executeQuery();
+
+				Precio = rs.getInt("Precio");
+
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+		return Precio;
+	}
+	
+	public int precioModeloP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
 		int Precio = 0;
@@ -437,8 +645,66 @@ public class Bd {
 		}
 		return Precio;
 	}
+	
+	public int precioMarcaP(String p) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		int Precio = 0;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Marca'");
+				stmt.setString(1, p);
+				ResultSet rs = stmt.executeQuery();
+
+				Precio = rs.getInt("Precio");
+
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+		return Precio;
+	}
 
 	public int precioCvB(String p) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		int Precio = 0;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Cv'");
+				stmt.setString(1, p);
+				ResultSet rs = stmt.executeQuery();
+
+				
+				Precio = rs.getInt("Precio");
+				
+
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+		return Precio;
+	}
+	
+	public int precioCvP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
 		int Precio = 0;
@@ -497,8 +763,68 @@ public class Bd {
 		}
 		return Precio;
 	}
+	
+	public int precioRuedasP(String p) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		int Precio = 0;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Rueda'");
+				stmt.setString(1, p);
+				ResultSet rs = stmt.executeQuery();
+
+				
+				Precio =rs.getInt("Precio");
+				
+
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+		return Precio;
+	}
 
 	public int precioManillarB(String p) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		int Precio = 0;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Manillar'");
+				stmt.setString(1, p);
+				ResultSet rs = stmt.executeQuery();
+
+				
+				Precio = Precio + rs.getInt("Precio");
+				
+
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+		return Precio;
+	}
+	
+	public int precioManillarP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
 		int Precio = 0;
@@ -557,5 +883,37 @@ public class Bd {
 		}
 		return Precio;
 	}
+
+
+
+public int precioSillinP(String p) {
+	Bd bd = new Bd();
+	bd.cargarDriver();
+	int Precio = 0;
+	try {
+		Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+
+		try (Scanner scanner = new Scanner(System.in)) {
+
+			PreparedStatement stmt = conn
+					.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Sillin'");
+			stmt.setString(1, p);
+			ResultSet rs = stmt.executeQuery();
+
+			
+			Precio =rs.getInt("Precio");
+			
+
+		}
+
+		conn.close();
+
+	} catch (Exception e) {
+		System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		System.out.println("No se ha podido conectar a la base de datos.");
+		System.exit(0);
+	}
+	return Precio;
+}
 
 }
