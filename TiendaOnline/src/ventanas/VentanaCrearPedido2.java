@@ -37,17 +37,15 @@ import models.Pedido;
 
 public class VentanaCrearPedido2 extends JFrame {
 
-
+	private JPanel contentPanelCrearPedido2;
+	private JTable tablaCrearPedidoPatin;
+	
 	private DefaultTableModel mDatosPatin;
 	private ArrayList<Patin> pedidoPatines = new ArrayList();
 	
-	private JPanel contentPanelCrearPedido2;
-	private JTextField textField;
-
-	private JTable tablaCrearPedidoPatin;
-	private final Action action = new BotonAtras();
-	protected Cliente cl;
 	
+	//private JTextField textField;
+
 	String valorModeloP;
 	String valorMarcaP;
 	String valorPrecioP;
@@ -55,7 +53,9 @@ public class VentanaCrearPedido2 extends JFrame {
 	String valorRuedasP;
 	String valorManillarP;
 	String valorSillinP;
-
+	
+	private final Action action = new BotonAtras();
+	protected Cliente cl;
 
 	public VentanaCrearPedido2(Cliente c) {
 		Bd bd = new Bd();
@@ -69,7 +69,7 @@ public class VentanaCrearPedido2 extends JFrame {
 		contentPanelCrearPedido2.setLayout(null);
 		
 		tablaCrearPedidoPatin = new JTable();
-		tablaCrearPedidoPatin.setFont(new Font("Arial", Font.PLAIN, 14));
+		tablaCrearPedidoPatin.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		tablaCrearPedidoPatin.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		tablaCrearPedidoPatin.setBounds(10, 40, 1014, 277);
 		contentPanelCrearPedido2.add(tablaCrearPedidoPatin);
@@ -103,49 +103,46 @@ public class VentanaCrearPedido2 extends JFrame {
 		lblRuedasP.setBounds(494, 414, 46, 14);
 		contentPanelCrearPedido2.add(lblRuedasP);
 		
-		JButton btnAtras = new JButton("Atras");
-		btnAtras.setAction(action);
-		btnAtras.setBounds(868, 499, 89, 23);
-		contentPanelCrearPedido2.add(btnAtras);
+
 		
 		JComboBox comboBoxModeloP = new JComboBox();
-		comboBoxModeloP.setBounds(332, 324, 109, 22);
 		bd.cargarModeloP(comboBoxModeloP);
+		comboBoxModeloP.setBounds(332, 324, 109, 22);
 		contentPanelCrearPedido2.add(comboBoxModeloP);
 		
 		JComboBox comboBoxMarcaP = new JComboBox();
-		comboBoxMarcaP.setBounds(332, 370, 109, 22);
 		bd.cargarMarcaP(comboBoxMarcaP);
+		comboBoxMarcaP.setBounds(332, 370, 109, 22);
 		contentPanelCrearPedido2.add(comboBoxMarcaP);
 		
 		JComboBox comboBoxCvP = new JComboBox();
-		comboBoxCvP.setBounds(332, 410, 109, 22);
 		bd.cargarCvP(comboBoxCvP);
+		comboBoxCvP.setBounds(332, 410, 109, 22);
 		contentPanelCrearPedido2.add(comboBoxCvP);
 		
 		JComboBox comboBoxManillarP = new JComboBox();
-		comboBoxManillarP.setBounds(570, 324, 121, 22);
 		bd.cargarManillarP(comboBoxManillarP);
+		comboBoxManillarP.setBounds(570, 324, 121, 22);
 		contentPanelCrearPedido2.add(comboBoxManillarP);
 		
 		JComboBox comboBoxBaseP = new JComboBox();
-		comboBoxBaseP.setBounds(570, 370, 121, 22);
 		bd.cargarBaseP(comboBoxBaseP);
+		comboBoxBaseP.setBounds(570, 370, 121, 22);
 		contentPanelCrearPedido2.add(comboBoxBaseP);
 		
 		JComboBox comboBoxRuedasP = new JComboBox();
-		comboBoxRuedasP.setBounds(570, 410, 121, 22);
 		bd.cargarRuedasP(comboBoxRuedasP);
+		comboBoxRuedasP.setBounds(570, 410, 121, 22);
 		contentPanelCrearPedido2.add(comboBoxRuedasP);
 		
-		JButton btnCrearPatin = new JButton("Crear Pedido");
+	/*	JButton btnCrearPatin = new JButton("Crear Pedido");
 		btnCrearPatin.setBounds(72, 499, 109, 23);
-		contentPanelCrearPedido2.add(btnCrearPatin);
+		contentPanelCrearPedido2.add(btnCrearPatin);*/
 		
 		cargarPatin();
 		
-		JButton btnAnadirP = new JButton("Añadir Patín");
-		btnAnadirP.addActionListener(new ActionListener() {
+		JButton btnAnadirPatin = new JButton("Añadir Patín");
+		btnAnadirPatin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Patin s = new Patin();
 				valorModeloP = comboBoxModeloP.getSelectedItem().toString();
@@ -172,12 +169,31 @@ public class VentanaCrearPedido2 extends JFrame {
 				cargarPatin();
 			}
 		});
-		btnAnadirP.setBounds(454, 499, 129, 23);
-		contentPanelCrearPedido2.add(btnAnadirP);
-	
+		
+		btnAnadirPatin.setBounds(454, 499, 129, 23);
+		contentPanelCrearPedido2.add(btnAnadirPatin);
+		
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.setAction(action);
+		btnAtras.setBounds(868, 499, 89, 23);
+		contentPanelCrearPedido2.add(btnAtras);
+		
+		JButton btnCrearPatin = new JButton("Crear Pedido");
+		btnCrearPatin.setBounds(72, 499, 109, 23);
+		contentPanelCrearPedido2.add(btnCrearPatin);
 	}
 
-	
+		private class BotonAtras extends AbstractAction {
+		public BotonAtras() {
+			putValue(NAME, "Atras");
+			putValue(SHORT_DESCRIPTION, "ir a la  ventana pedido");
+		}
+		public void actionPerformed(ActionEvent e) {
+			VentanaCrearPedidoIntermedia VentanaCrearPedidoIntermedia = new VentanaCrearPedidoIntermedia(cl);
+			VentanaCrearPedidoIntermedia.setVisible(true);
+			dispose();
+		}
+	}
 	 public void cargarPatin() {
 		
 		Vector<String> cabecerasPatin = new Vector<String>(
@@ -199,15 +215,5 @@ public class VentanaCrearPedido2 extends JFrame {
 
 
 	}
-	private class BotonAtras extends AbstractAction {
-		public BotonAtras() {
-			putValue(NAME, "Atras");
-			putValue(SHORT_DESCRIPTION, "ir atras");
-		}
-		public void actionPerformed(ActionEvent e) {
-			VentanaCrearPedidoIntermedia VentanaCrearPedidoIntermedia = new VentanaCrearPedidoIntermedia(cl);
-			VentanaCrearPedidoIntermedia.setVisible(true);
-			dispose();
-		}
-	}
+
 }

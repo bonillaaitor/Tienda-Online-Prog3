@@ -176,7 +176,7 @@ public class VentanaCrearPedido extends JFrame {
 	private class btnAtras extends AbstractAction {
 		public btnAtras() {
 			putValue(NAME, "Atras");
-			putValue(SHORT_DESCRIPTION, "ir a la ventana cliente");
+			putValue(SHORT_DESCRIPTION, "ir a la ventana pedido");
 		}
 
 		public void actionPerformed(ActionEvent e) {
