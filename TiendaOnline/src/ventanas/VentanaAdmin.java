@@ -58,10 +58,6 @@ public class VentanaAdmin extends JFrame {
 
 		JButton botonCerrarSesion = new JButton("Cerrar Sesion");
 		botonCerrarSesion.setAction(actionCerrarSesion);
-		botonCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		botonCerrarSesion.setBounds(800, 459, 125, 23);
 		contentAdmin.add(botonCerrarSesion);
 
@@ -89,23 +85,8 @@ public class VentanaAdmin extends JFrame {
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		labelTitulo.setBounds(384, 38, 281, 35);
 		contentAdmin.add(labelTitulo);
-		
-		JButton botonNuevoCliente = new JButton("Añadir Cliente");
-		botonNuevoCliente.setBounds(428, 354, 151, 23);
-		contentAdmin.add(botonNuevoCliente);
-		
-		botonNuevoCliente.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VentanaRegistro ventanaRegistro = new VentanaRegistro(a);
-				ventanaRegistro.setVisible(true);
-				dispose();
-
-			}
-		});
+	
 	}
-
 	
 	private class botonCerrarSesion extends AbstractAction {
 		/**

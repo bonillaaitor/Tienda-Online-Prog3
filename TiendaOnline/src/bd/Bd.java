@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,7 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import models.Cliente;
+import models.Pedido;
 import ventanas.VentanaInicio;
 
 public class Bd {
@@ -231,7 +233,7 @@ public class Bd {
 		}
 
 	}
-	
+
 	public void cargarModeloP(JComboBox<String> cp) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -291,7 +293,7 @@ public class Bd {
 		}
 
 	}
-	
+
 	public void cargarMarcaP(JComboBox<String> cp) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -351,7 +353,7 @@ public class Bd {
 		}
 
 	}
-	
+
 	public void cargarCvP(JComboBox<String> cp) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -411,7 +413,7 @@ public class Bd {
 		}
 
 	}
-	
+
 	public void cargarRuedasP(JComboBox<String> cp) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -471,7 +473,7 @@ public class Bd {
 		}
 
 	}
-	
+
 	public void cargarManillarP(JComboBox<String> cp) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -531,7 +533,7 @@ public class Bd {
 		}
 
 	}
-	
+
 	public void cargarBaseP(JComboBox<String> cp) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -589,7 +591,7 @@ public class Bd {
 		}
 		return Precio;
 	}
-	
+
 	public int precioModeloP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -645,7 +647,7 @@ public class Bd {
 		}
 		return Precio;
 	}
-	
+
 	public int precioMarcaP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -688,9 +690,7 @@ public class Bd {
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
-				
 				Precio = rs.getInt("Precio");
-				
 
 			}
 
@@ -703,7 +703,7 @@ public class Bd {
 		}
 		return Precio;
 	}
-	
+
 	public int precioCvP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -718,9 +718,7 @@ public class Bd {
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
-				
 				Precio = rs.getInt("Precio");
-				
 
 			}
 
@@ -748,9 +746,7 @@ public class Bd {
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
-				
-				Precio =rs.getInt("Precio");
-				
+				Precio = rs.getInt("Precio");
 
 			}
 
@@ -763,7 +759,7 @@ public class Bd {
 		}
 		return Precio;
 	}
-	
+
 	public int precioRuedasP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -778,9 +774,7 @@ public class Bd {
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
-				
-				Precio =rs.getInt("Precio");
-				
+				Precio = rs.getInt("Precio");
 
 			}
 
@@ -808,9 +802,7 @@ public class Bd {
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
-				
 				Precio = Precio + rs.getInt("Precio");
-				
 
 			}
 
@@ -823,7 +815,7 @@ public class Bd {
 		}
 		return Precio;
 	}
-	
+
 	public int precioManillarP(String p) {
 		Bd bd = new Bd();
 		bd.cargarDriver();
@@ -838,9 +830,7 @@ public class Bd {
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
-				
 				Precio = Precio + rs.getInt("Precio");
-				
 
 			}
 
@@ -868,9 +858,7 @@ public class Bd {
 				stmt.setString(1, p);
 				ResultSet rs = stmt.executeQuery();
 
-				
-				Precio =rs.getInt("Precio");
-				
+				Precio = rs.getInt("Precio");
 
 			}
 
@@ -884,36 +872,98 @@ public class Bd {
 		return Precio;
 	}
 
+	public int precioSillinP(String p) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		int Precio = 0;
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
 
+			try (Scanner scanner = new Scanner(System.in)) {
 
-public int precioSillinP(String p) {
-	Bd bd = new Bd();
-	bd.cargarDriver();
-	int Precio = 0;
-	try {
-		Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Sillin'");
+				stmt.setString(1, p);
+				ResultSet rs = stmt.executeQuery();
 
-		try (Scanner scanner = new Scanner(System.in)) {
+				Precio = rs.getInt("Precio");
 
-			PreparedStatement stmt = conn
-					.prepareStatement("SELECT Precio FROM ParteB WHERE Nombre = ? AND Tipo = 'Sillin'");
-			stmt.setString(1, p);
-			ResultSet rs = stmt.executeQuery();
+			}
 
-			
-			Precio =rs.getInt("Precio");
-			
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+		return Precio;
+	}
+	public int gestionIdPedido(int iP) {
+		
+		Bd bd = new Bd();
+		bd.cargarDriver();
+		int idPedido = 0;
+		
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+
+			try (Scanner scanner = new Scanner(System.in)) {
+
+				PreparedStatement stmt = conn
+						.prepareStatement("SELECT MAX(idP) FROM Pedido");
+				
+				ResultSet rs = stmt.executeQuery();
+				idPedido = rs.getInt(1);
+				
+
+			}
+
+			conn.close();
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.out.println("No se ha podido conectar a la base de datos.");
+			System.exit(0);
+		}
+		
+		idPedido = idPedido + 1;
+		return idPedido;
+
+	}
+	public void crearPedido(Pedido p) {
+		Bd bd = new Bd();
+		bd.cargarDriver();
+
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
+			try (Scanner scanner = new Scanner(System.in)) {
+				PreparedStatement stmt = conn.prepareStatement(
+						"INSERT INTO Pedido (idP, clienteUsuario, fechaP, fechaE, precioTotal) VALUES (?, ?, ?, ?, ?)");
+				
+					
+					stmt.setInt(1, p.getIdP());
+					stmt.setString(2, p.getClienteUsuario());
+					stmt.setString(3, p.getFechaP());
+					stmt.setString(4, p.getFechaE());
+					stmt.setInt(5, p.getPrecioTotal());
+					
+					stmt.executeUpdate();
+				
+
+				stmt.close();
+			}
+
+			conn.close();
+			LOG.log(Level.INFO, "Pedido creado con exito");
+
+		} catch (SQLException e) {
+			LOG.log(Level.INFO, "El pedido no ha podido ser creado");
+			LOG.log(Level.WARNING, e.getMessage());
 
 		}
-
-		conn.close();
-
-	} catch (Exception e) {
-		System.err.println(e.getClass().getName() + ": " + e.getMessage());
-		System.out.println("No se ha podido conectar a la base de datos.");
-		System.exit(0);
+		
 	}
-	return Precio;
-}
 
+	
 }
