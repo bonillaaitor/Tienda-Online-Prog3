@@ -27,6 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.Action;
 
@@ -153,17 +155,18 @@ public class VentanaCrearPedido2 extends JFrame {
 				valorSillinP = comboBoxBaseP.getSelectedItem().toString();
 			
 
-				int valorCvBInt = Integer.parseInt(valorCvP);
-				int precioBicicleta;
+				int valorCvPInt = Integer.parseInt(valorCvP);
+				int precioPatin = bd.precioModeloB(valorModeloP) + bd.precioMarcaB(valorMarcaP)
+				+ bd.precioCvB(valorCvP) + bd.precioRuedasB(valorRuedasP) + bd.precioManillarB(valorManillarP)
+				+ bd.precioSillinB(valorSillinP);;
 
 				s.setModelo(valorModeloP);
 				s.setMarca(valorMarcaP);
-				s.setCv(valorCvBInt);
+				s.setCv(valorCvPInt);
 				s.setRueda(valorRuedasP);
 				s.setManillar(valorManillarP);
 				s.setBase(valorSillinP);
-
-				s.setPrecio(2);
+				s.setPrecio(precioPatin);
 
 				pedidoPatines.add(s);
 				cargarPatin();
@@ -181,6 +184,34 @@ public class VentanaCrearPedido2 extends JFrame {
 		JButton btnCrearPatin = new JButton("Crear Pedido");
 		btnCrearPatin.setBounds(72, 499, 109, 23);
 		contentPanelCrearPedido2.add(btnCrearPatin);
+		btnCrearPatin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pedido p = new Pedido();
+				
+				String usuarioPedido = VentanaInicio.textoUsuario.getText();
+				int precioPatin = bd.precioModeloB(valorModeloP) + bd.precioMarcaB(valorMarcaP)
+				+ bd.precioCvB(valorCvP) + bd.precioRuedasB(valorRuedasP) + bd.precioManillarB(valorManillarP)
+				+ bd.precioSillinB(valorSillinP);
+				
+				LocalDate hoy = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
+				String fechaP = hoy.format(formatter);
+				
+				LocalDate hoyMasTres = LocalDate.now();
+				DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
+				String fechaE = hoyMasTres.format(formatter2);
+				
+				int idPedido = 0;
+				
+				p.setIdP(bd.gestionIdPedido(idPedido));
+				
+				p.setClienteUsuario(usuarioPedido);
+				p.setFechaP(fechaP);
+				p.setFechaE(fechaE);
+				p.setPrecioTotal(precioPatin);
+				bd.crearPedido(p);
+			}
+		});
 	}
 
 		private class BotonAtras extends AbstractAction {
