@@ -1,81 +1,41 @@
 nombre,usuario,password,email,direccion,telefono,num_tarjeta
-lucas,lucas3,123,asdf,asdf,sadfa,asdf
-pedro,pdro3,123,asd,asdf,asdf,asdf
-pepe,pepe3,123,asd,asdf,asdf,sadf
-juan,juan3,123,asd,asdf,sadf,asdf
-gugu,gugu3,123,asdf,asdf,asdf,sadf
-Jon,J,123,j@gmail.com,Calle Desengaño, 21,,
-f,k,k,k,k,kk,k
-Jon,j,123,j@gmail.com,Calle Desengaño 21,6738902,534512464575
-Prueba,1,1,1,1,grt,1
-Prueba,hola,1,1,1,grt,1
-Prueba,hola,1,1,1,grt,1
-Prueba,hola,1,1,1,123,1
-Peio,Peio,123,p@,Calle Alameda Urquijo,et,456322352345
-Peio,Peio,123,p@gmail.eus,Calle Alameda Urquijo,et,456322352345
-Peio,Peio,123,p@gmail.eus,Calle Alameda Urquijo,23423,456322352345
-P,p,123,p@gmail.com,d,f,2523423
-P,p,123,p@gmail.com,d,64353486,2523423
-H,h,h,h@gmail.com,h,634522332,34453675463435453
-Mikel,Mikel,123,Mikel@gmail.com,Itsasoko Ama 24,634252456,43253453466456455346
-Aritz,Aritz,123,Aritz@gmail.com,A,634563465,436456675455324
-djhtyj,dytj,dytjtdyj,tdyjdtyj,ytdjdytj,tdyjdt,jdytj
-djhtyj,dytj,dytjtdyj,tdyjdtyj@gmail.com,ytdjdytj,tdyjdt,jdytj
-Gorka,Gorka,123,Gorka@gmail.com,G,g,45665434365467
-Gorka,Gorka,123,Gorka@gmail.com,G,6342235,45665434365467
-booker12,a,a,9012,Rachel,Booker,a
-grey07,b,b,2070,Laura,Grey,b
-johnson81,c,c,4081,Craig,Johnson,c
-jenkins46,d,d,9346,Mary,Jenkins,d
-smith79,f,f,5079,Jamie,Smith,f
-booker12,a,b,9012,Rachel,Booker,c
-grey07,d,e,2070,Laura,Grey,f
-johnson81,g,h,4081,Craig,Johnson,i
-jenkins46,j,k,9346,Mary,Jenkins,r
-smith79,s,m,5079,Jamie,Smith,n
-booker12,a,b,9012,Rachel,Booker,c
-grey07,d,e,2070,Laura,Grey,f
-johnson81,g,h,4081,Craig,Johnson,i
-jenkins46,j,k,9346,Mary,Jenkins,r
-smith79,s,m,5079,Jamie,Smith,n
-booker12,Rachel,Booker,a,b,9012,c
-grey07,Laura,Grey,d,e,2070,f
-johnson81,Craig,Johnson,g,h,4081,i
-jenkins46,Mary,Jenkins,j,k,9346,r
-smith79,Jamie,Smith,s,m,5079,n
-booker12,a,b,9012,Rachel,Booker,c
-grey07,d,e,2070,Laura,Grey,f
-johnson81,g,h,4081,Craig,Johnson,i
-jenkins46,j,k,9346,Mary,Jenkins,r
-smith79,s,m,5079,Jamie,Smith,n
-booker12,a,b,9012,Rachel,Booker,c
-grey07,d,e,2070,Laura,Grey,f
-johnson81,g,h,4081,Craig,Johnson,i
-jenkins46,j,k,9346,Mary,Jenkins,r
-smith79,s,m,5079,Jamie,Smith,n
+lucas,lucas3,123,luc@gmail.com,Calle Toral 4,652840840,68740641606547
+pedro,pedro3,123,ped@gmail.com,Calle Peñafría 2,643534867,35406406840668
+pepe,pepe3,123,pe@gmail.com,Avenida Matute 14,643534867,52108540802153
+juan,juan3,123,ju@gmail.com,Calle Benedicto 16,652840840,68740641606547
+gugu,gugu3,123,gu@gmail.com,Calle hormiga 3,643534867,11208540834034
+Jon,Jon,123,j@gmail.com,Calle Desengaño 21,658468415,52108540802153
+Jon,j,123,j@gmail.com,Calle Desengaño 21,643534867,23106540640101
+Prueba,prueba,1,pr@gmail.com,Calle Santa Eulalia 17,652840840,68740641606547
+Peio,Peio,123,p@gmail.eus,Calle Alameda Urquijo,634563465,11208540834034
+P,p,123,p@gmail.com,Calle Tximeleta 12,643534867,52108540802153
+H,h,h,h@gmail.com,Calle Avenida de las Universidades 6,634522332,46346041562108
+Mikel,Mikel,123,Mikel@gmail.com,Itsasoko Ama 24,634252456,68740641606547
+Aritz,Aritz,123,Aritz@gmail.com,Avenida Sotera 1,652840840,35406406840668
+Gorka,Gorka,123,Gorka@gmail.com,Calle Casimiro 23,634252456,35406406840668
+johnson81,c,c,jh@gmail.com,Calle Peñafría 2,657206203,46346041562108
+smith79,f,f,smith@gmail.com,Avenida Matute 5,681215815,68740641606547
+jenkins46,9346,Mary,jen@gmail.com,Calle Desengaño 21,634563465,11208540834034
+booker12,9012,Rachel,br@gmail.com,Calle Ave del Paraíso 7,681215815,11208540834034
+grey07,2070,Laura,grey@gmail.com,Mirador de Montepinar 7,634563465,35406406840668
+Diego,Diego,123,d@gmail.com,Calle Udaletxea 27,685952103,85405410640110
+Imanol,Imanol,123,i@gmail.com,Calle Itsasalde 12,681215815,52108540802153
+Xabi,Xabi,123,x@gmail.com,Calle Atocha 20,652840840,60843150148410
+Uxue,Uxue,123,u@gmail.com,Calle Avenida de las Universidades 4,690654004,11208540834034
+Andoni,Andoni,123,a@gmail.com,Avenida Matilde 27,658921050,23106540640101
+Irune,Irune,123,ir@gmail.com,Calle Urdiales 5,628465412,12084035168741
+Galder,Galder,123,g@gmail.com,Avenida Loitzune 17,690560657,11208540834034
+Egoitz,Egoitz,123,e@gmail.com,Calle Aritzarraga 4,657206203,46346041562108
+Edu,Edu,123,edu@gmail.com,Calle Zubizuri 19,650648078,35406406840668
+Ane,Ane,123,ane@gmail.com,Calle Santa Eulalia 21,640684051,68740641606547
+sdf,asdf,asdf,asdf,asdf,asdf,asdf
+sdf,asdf,asdf,asdf,asdf,asdf,asdf
 booker12,9012,Rachel,Booker,a,b,c
 grey07,2070,Laura,Grey,d,e,f
 johnson81,4081,Craig,Johnson,g,h,i
 jenkins46,9346,Mary,Jenkins,j,k,r
 smith79,5079,Jamie,Smith,s,m,n
-booker12,9012,Rachel,Booker,a,b,c
-grey07,2070,Laura,Grey,d,e,f
-johnson81,4081,Craig,Johnson,g,h,i
-jenkins46,9346,Mary,Jenkins,j,k,r
-smith79,5079,Jamie,Smith,s,m,n
-,,,,,,j
-j,j,jj,jj,j,j,j
-j,j,jj,jj@j.es,j,j,j
-booker12,9012,Rachel,Booker,a,b,c
-grey07,2070,Laura,Grey,d,e,f
-johnson81,4081,Craig,Johnson,g,h,i
-jenkins46,9346,Mary,Jenkins,j,k,r
-smith79,5079,Jamie,Smith,s,m,n
-booker12,9012,Rachel,Booker,a,b,c
-grey07,2070,Laura,Grey,d,e,f
-johnson81,4081,Craig,Johnson,g,h,i
-jenkins46,9346,Mary,Jenkins,j,k,r
-smith79,5079,Jamie,Smith,s,m,n
+,,,,,,
 booker12,9012,Rachel,Booker,a,b,c
 grey07,2070,Laura,Grey,d,e,f
 johnson81,4081,Craig,Johnson,g,h,i

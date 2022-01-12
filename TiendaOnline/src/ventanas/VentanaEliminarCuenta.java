@@ -35,7 +35,7 @@ public class VentanaEliminarCuenta extends JFrame {
 	private final Action actionBotonEliminar = new botonEliminar();
 
 	public VentanaEliminarCuenta() {
-		setTitle("ventana Eliminar");
+		setTitle("ventana eliminar cuenta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1050, 600);
 		contentPanelEliminarCuenta = new JPanel();
@@ -83,8 +83,8 @@ public class VentanaEliminarCuenta extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Volver a la ventana cliente");
 		}
 		public void actionPerformed(ActionEvent e) {
-			VentanaInicio ventanaInicio = new VentanaInicio();
-			ventanaInicio.setVisible(true);
+			VentanaCliente ventanaCliente = new VentanaCliente(null);
+			ventanaCliente.setVisible(true);
 			dispose();
 		}
 	}
