@@ -19,6 +19,7 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -43,9 +44,9 @@ public class VentanaVerPedidos extends JFrame {
 	private JButton botonAtras;
 	private final Action action = new BotonAtras();
 	protected Cliente cl;
-	private final Action action_1 = new CargarPedidos();
 	private DefaultTableModel mDatosPedido;
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+	
 
 	public VentanaVerPedidos(Cliente c) {
 		cl = c;
@@ -62,27 +63,26 @@ public class VentanaVerPedidos extends JFrame {
 		labelTitulo.setBounds(427, 32, 213, 43);
 		contentPanelVerPedidos.add(labelTitulo);
 		
-		tablaVerPedidos = new JTable();
-		tablaVerPedidos.setFont(new Font("Arial", Font.PLAIN, 14));
-		tablaVerPedidos.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tablaVerPedidos.setBounds(233, 196, 571, 193);
-		contentPanelVerPedidos.add(tablaVerPedidos);
 		
 		botonAtras = new JButton("botonAtras");
 		botonAtras.setAction(action);
 		botonAtras.setBounds(463, 512, 118, 23);
 		contentPanelVerPedidos.add(botonAtras);
 		
-		JButton botonCargarPedidos = new JButton("New button");
-		botonCargarPedidos.setAction(action_1);
-		botonCargarPedidos.setBounds(450, 150, 134, 23);
-		contentPanelVerPedidos.add(botonCargarPedidos);
-		
+		verPedidos();
 	}
 		
 		public void verPedidos() {
+			
+			tablaVerPedidos = new JTable();
+			tablaVerPedidos.setFont(new Font("Arial", Font.PLAIN, 14));
+			tablaVerPedidos.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			tablaVerPedidos.setBounds(233, 196, 571, 193);
+			contentPanelVerPedidos.add(tablaVerPedidos);
+			
 			Bd bd = new Bd();
 			bd.cargarDriver();
+			
 			
 			try {
 				Connection conn = DriverManager.getConnection("jdbc:sqlite:TiendaOnline/files/tiendaonline.db");
@@ -137,7 +137,6 @@ public class VentanaVerPedidos extends JFrame {
 	        System.exit(0);
 	      }
 	}
-	
 	private class BotonAtras extends AbstractAction {
 		/**
 		 * 
@@ -151,19 +150,6 @@ public class VentanaVerPedidos extends JFrame {
 			VentanaCliente ventanaCliente = new VentanaCliente(cl);
 			ventanaCliente.setVisible(true);
 			dispose();
-		}
-	}
-	private class CargarPedidos extends AbstractAction {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		public CargarPedidos() {
-			putValue(NAME, "Cargar pedidos");
-			putValue(SHORT_DESCRIPTION, "Visualizar los pedidos en la tabla");
-		}
-		public void actionPerformed(ActionEvent e) {
-			verPedidos();
 		}
 	}
 }
