@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -19,7 +18,6 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -80,6 +78,26 @@ public class VentanaVerPedidos extends JFrame {
 			tablaVerPedidos.setBounds(233, 196, 571, 193);
 			contentPanelVerPedidos.add(tablaVerPedidos);
 			
+			JLabel lblNewLabel = new JLabel("idP");
+			lblNewLabel.setBounds(255, 176, 46, 14);
+			contentPanelVerPedidos.add(lblNewLabel);
+			
+			JLabel lblNewLabel_1 = new JLabel("clienteUsuario");
+			lblNewLabel_1.setBounds(312, 176, 83, 14);
+			contentPanelVerPedidos.add(lblNewLabel_1);
+			
+			JLabel lblNewLabel_2 = new JLabel("fechaP");
+			lblNewLabel_2.setBounds(470, 176, 46, 14);
+			contentPanelVerPedidos.add(lblNewLabel_2);
+			
+			JLabel lblNewLabel_3 = new JLabel("fechaE");
+			lblNewLabel_3.setBounds(620, 176, 46, 14);
+			contentPanelVerPedidos.add(lblNewLabel_3);
+			
+			JLabel lblNewLabel_4 = new JLabel("precioTotal");
+			lblNewLabel_4.setBounds(726, 176, 64, 14);
+			contentPanelVerPedidos.add(lblNewLabel_4);
+			
 			Bd bd = new Bd();
 			bd.cargarDriver();
 			
@@ -114,10 +132,10 @@ public class VentanaVerPedidos extends JFrame {
 				}
 												
 				tablaVerPedidos.getColumnModel().getColumn(0).setMaxWidth(60);
-				tablaVerPedidos.getColumnModel().getColumn(1).setMaxWidth(150);
+				tablaVerPedidos.getColumnModel().getColumn(1).setMaxWidth(120);
 				tablaVerPedidos.getColumnModel().getColumn(2).setMaxWidth(150);
 				tablaVerPedidos.getColumnModel().getColumn(3).setMaxWidth(150);
-				tablaVerPedidos.getColumnModel().getColumn(4).setMaxWidth(60);		
+				tablaVerPedidos.getColumnModel().getColumn(4).setMaxWidth(90);		
 				
 				DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
 				Alinear.setHorizontalAlignment(SwingConstants.CENTER);

@@ -76,6 +76,26 @@ public class VentanaVerPedidosAdmin extends JFrame {
 			tablaVerPedidos.setBounds(233, 147, 571, 315);
 			contentPanelVerPedidos.add(tablaVerPedidos);
 			
+			JLabel lblNewLabel = new JLabel("idP");
+			lblNewLabel.setBounds(255, 130, 46, 14);
+			contentPanelVerPedidos.add(lblNewLabel);
+			
+			JLabel lblNewLabel_1 = new JLabel("clienteUsuario");
+			lblNewLabel_1.setBounds(312, 130, 83, 14);
+			contentPanelVerPedidos.add(lblNewLabel_1);
+			
+			JLabel lblNewLabel_2 = new JLabel("fechaP");
+			lblNewLabel_2.setBounds(470, 130, 46, 14);
+			contentPanelVerPedidos.add(lblNewLabel_2);
+			
+			JLabel lblNewLabel_3 = new JLabel("fechaE");
+			lblNewLabel_3.setBounds(620, 130, 46, 14);
+			contentPanelVerPedidos.add(lblNewLabel_3);
+			
+			JLabel lblNewLabel_4 = new JLabel("precioTotal");
+			lblNewLabel_4.setBounds(726, 130, 64, 14);
+			contentPanelVerPedidos.add(lblNewLabel_4);
+			
 			Bd bd = new Bd();
 			bd.cargarDriver();
 			
@@ -103,10 +123,10 @@ public class VentanaVerPedidosAdmin extends JFrame {
 				}
 												
 				tablaVerPedidos.getColumnModel().getColumn(0).setMaxWidth(60);
-				tablaVerPedidos.getColumnModel().getColumn(1).setMaxWidth(150);
+				tablaVerPedidos.getColumnModel().getColumn(1).setMaxWidth(120);
 				tablaVerPedidos.getColumnModel().getColumn(2).setMaxWidth(150);
 				tablaVerPedidos.getColumnModel().getColumn(3).setMaxWidth(150);
-				tablaVerPedidos.getColumnModel().getColumn(4).setMaxWidth(60);		
+				tablaVerPedidos.getColumnModel().getColumn(4).setMaxWidth(90);		
 				
 				DefaultTableCellRenderer Alinear = new DefaultTableCellRenderer();
 				Alinear.setHorizontalAlignment(SwingConstants.CENTER);
@@ -142,5 +162,4 @@ public class VentanaVerPedidosAdmin extends JFrame {
 			dispose();
 		}
 	}
-	
 }
