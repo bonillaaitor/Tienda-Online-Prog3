@@ -41,7 +41,6 @@ public class VentanaVerPedidosAdmin extends JFrame {
 	private JButton botonAtras;
 	private final Action action = new BotonAtras();
 	protected Administrador ad;
-	private final Action action_1 = new CargarPedidos();
 	private DefaultTableModel mDatosPedido;
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 
@@ -59,26 +58,24 @@ public class VentanaVerPedidosAdmin extends JFrame {
 		labelTitulo.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		labelTitulo.setBounds(427, 30, 213, 43);
 		contentPanelVerPedidos.add(labelTitulo);
-		
-		tablaVerPedidos = new JTable();
-		tablaVerPedidos.setFont(new Font("Arial", Font.PLAIN, 14));
-		tablaVerPedidos.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tablaVerPedidos.setBounds(233, 147, 571, 315);
-		contentPanelVerPedidos.add(tablaVerPedidos);
-		
+				
 		botonAtras = new JButton("botonAtras");
 		botonAtras.setAction(action);
 		botonAtras.setBounds(463, 512, 118, 23);
 		contentPanelVerPedidos.add(botonAtras);
 		
-		JButton botonCargarPedidos = new JButton("New button");
-		botonCargarPedidos.setAction(action_1);
-		botonCargarPedidos.setBounds(456, 105, 134, 23);
-		contentPanelVerPedidos.add(botonCargarPedidos);
-		
+		verPedidos();
+				
 	}
 		
 		public void verPedidos() {
+			
+			tablaVerPedidos = new JTable();
+			tablaVerPedidos.setFont(new Font("Arial", Font.PLAIN, 14));
+			tablaVerPedidos.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+			tablaVerPedidos.setBounds(233, 147, 571, 315);
+			contentPanelVerPedidos.add(tablaVerPedidos);
+			
 			Bd bd = new Bd();
 			bd.cargarDriver();
 			
@@ -145,17 +142,5 @@ public class VentanaVerPedidosAdmin extends JFrame {
 			dispose();
 		}
 	}
-	private class CargarPedidos extends AbstractAction {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		public CargarPedidos() {
-			putValue(NAME, "Cargar pedidos");
-			putValue(SHORT_DESCRIPTION, "Visualizar los pedidos en la tabla");
-		}
-		public void actionPerformed(ActionEvent e) {
-			verPedidos();
-		}
-	}
+	
 }
