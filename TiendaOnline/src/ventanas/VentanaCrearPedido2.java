@@ -145,7 +145,7 @@ public class VentanaCrearPedido2 extends JFrame {
 		
 		cargarPatin();
 		
-		JButton btnAnadirPatin = new JButton("Añadir Patín");
+		JButton btnAnadirPatin = new JButton("Crear Pedido");
 		btnAnadirPatin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Patin s = new Patin();
@@ -172,6 +172,31 @@ public class VentanaCrearPedido2 extends JFrame {
 
 				pedidoPatines.add(s);
 				cargarPatin();
+				
+				Pedido p = new Pedido();
+				
+				String usuarioPedido = VentanaInicio.textoUsuario.getText();
+				int precioPatin2 = bd.precioModeloB(valorModeloP) + bd.precioMarcaB(valorMarcaP)
+				+ bd.precioCvB(valorCvP) + bd.precioRuedasB(valorRuedasP) + bd.precioManillarB(valorManillarP)
+				+ bd.precioSillinB(valorSillinP);
+				
+				LocalDate hoy = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
+				String fechaP = hoy.format(formatter);
+				
+				LocalDate hoyMasTres = LocalDate.now();
+				DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
+				String fechaE = hoyMasTres.format(formatter2);
+				
+				int idPedido = 0;
+				
+				p.setIdP(bd.gestionIdPedido(idPedido));
+				
+				p.setClienteUsuario(usuarioPedido);
+				p.setFechaP(fechaP);
+				p.setFechaE(fechaE);
+				p.setPrecioTotal(precioPatin2);
+				bd.crearPedido(p);
 			}
 		});
 		
@@ -182,10 +207,6 @@ public class VentanaCrearPedido2 extends JFrame {
 		btnAtras.setAction(action);
 		btnAtras.setBounds(868, 499, 89, 23);
 		contentPanelCrearPedido2.add(btnAtras);
-		
-		JButton btnCrearPatin = new JButton("Crear Pedido");
-		btnCrearPatin.setBounds(72, 499, 109, 23);
-		contentPanelCrearPedido2.add(btnCrearPatin);
 		
 		JLabel lblNewLabelModeloP = new JLabel("Modelo");
 		lblNewLabelModeloP.setBounds(261, 22, 46, 14);
@@ -214,34 +235,7 @@ public class VentanaCrearPedido2 extends JFrame {
 		JLabel lblNewLabelBaseP = new JLabel("Base");
 		lblNewLabelBaseP.setBounds(691, 22, 46, 14);
 		contentPanelCrearPedido2.add(lblNewLabelBaseP);
-		btnCrearPatin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Pedido p = new Pedido();
-				
-				String usuarioPedido = VentanaInicio.textoUsuario.getText();
-				int precioPatin = bd.precioModeloB(valorModeloP) + bd.precioMarcaB(valorMarcaP)
-				+ bd.precioCvB(valorCvP) + bd.precioRuedasB(valorRuedasP) + bd.precioManillarB(valorManillarP)
-				+ bd.precioSillinB(valorSillinP);
-				
-				LocalDate hoy = LocalDate.now();
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
-				String fechaP = hoy.format(formatter);
-				
-				LocalDate hoyMasTres = LocalDate.now();
-				DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
-				String fechaE = hoyMasTres.format(formatter2);
-				
-				int idPedido = 0;
-				
-				p.setIdP(bd.gestionIdPedido(idPedido));
-				
-				p.setClienteUsuario(usuarioPedido);
-				p.setFechaP(fechaP);
-				p.setFechaE(fechaE);
-				p.setPrecioTotal(precioPatin);
-				bd.crearPedido(p);
-			}
-		});
+
 	}
 
 		private class BotonAtras extends AbstractAction {
