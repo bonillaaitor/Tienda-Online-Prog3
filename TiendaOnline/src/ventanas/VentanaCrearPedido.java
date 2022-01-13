@@ -144,7 +144,7 @@ public class VentanaCrearPedido extends JFrame {
 
 		cargarBicicletas();
 
-		JButton btnAnadirBici = new JButton("A\u00F1adir Bici");
+		JButton btnAnadirBici = new JButton("Crear Pedido");
 		btnAnadirBici.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Bicicleta o = new Bicicleta();
@@ -170,6 +170,31 @@ public class VentanaCrearPedido extends JFrame {
 
 				pedidoBicis.add(o);
 				cargarBicicletas();
+				
+				Pedido p = new Pedido();
+				
+				String usuarioPedido = VentanaInicio.textoUsuario.getText();
+				int precioBicicleta2 = bd.precioModeloB(valorModeloB) + bd.precioMarcaB(valorMarcaB)
+				+ bd.precioCvB(valorCvB) + bd.precioRuedasB(valorRuedasB) + bd.precioManillarB(valorManillarB)
+				+ bd.precioSillinB(valorSillinB);
+				
+				LocalDate hoy = LocalDate.now();
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
+				String fechaP = hoy.format(formatter);
+				
+				LocalDate hoyMasTres = LocalDate.now();
+				DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
+				String fechaE = hoyMasTres.format(formatter2);
+				
+				int idPedido = 0;
+				
+				p.setIdP(bd.gestionIdPedido(idPedido));
+				
+				p.setClienteUsuario(usuarioPedido);
+				p.setFechaP(fechaP);
+				p.setFechaE(fechaE);
+				p.setPrecioTotal(precioBicicleta2);
+				bd.crearPedido(p);
 			}
 		});
 		btnAnadirBici.setBounds(474, 512, 129, 23);
@@ -179,10 +204,6 @@ public class VentanaCrearPedido extends JFrame {
 		btnAtras.setAction(actionBotonAtras);
 		btnAtras.setBounds(873, 512, 118, 23);
 		contentPanelCrearPedido.add(btnAtras);
-
-		JButton btnCrearPedido = new JButton("Crear pedido");
-		btnCrearPedido.setBounds(86, 512, 118, 23);
-		contentPanelCrearPedido.add(btnCrearPedido);
 		
 		JLabel lblNewLabelModeloB = new JLabel("Modelo");
 		lblNewLabelModeloB.setBounds(265, 42, 46, 14);
@@ -211,36 +232,6 @@ public class VentanaCrearPedido extends JFrame {
 		JLabel lblNewLabelSillinB = new JLabel("Sillin");
 		lblNewLabelSillinB.setBounds(697, 42, 46, 14);
 		contentPanelCrearPedido.add(lblNewLabelSillinB);
-		
-		
-		btnCrearPedido.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Pedido p = new Pedido();
-				
-				String usuarioPedido = VentanaInicio.textoUsuario.getText();
-				int precioBicicleta = bd.precioModeloB(valorModeloB) + bd.precioMarcaB(valorMarcaB)
-				+ bd.precioCvB(valorCvB) + bd.precioRuedasB(valorRuedasB) + bd.precioManillarB(valorManillarB)
-				+ bd.precioSillinB(valorSillinB);
-				
-				LocalDate hoy = LocalDate.now();
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
-				String fechaP = hoy.format(formatter);
-				
-				LocalDate hoyMasTres = LocalDate.now();
-				DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MMMM-dd");
-				String fechaE = hoyMasTres.format(formatter2);
-				
-				int idPedido = 0;
-				
-				p.setIdP(bd.gestionIdPedido(idPedido));
-				
-				p.setClienteUsuario(usuarioPedido);
-				p.setFechaP(fechaP);
-				p.setFechaE(fechaE);
-				p.setPrecioTotal(precioBicicleta);
-				bd.crearPedido(p);
-			}
-		});
 
 	}
 
