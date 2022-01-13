@@ -64,7 +64,7 @@ public class VentanaVerPedidos extends JFrame {
 		
 		botonAtras = new JButton("botonAtras");
 		botonAtras.setAction(action);
-		botonAtras.setBounds(463, 512, 118, 23);
+		botonAtras.setBounds(463, 527, 118, 23);
 		contentPanelVerPedidos.add(botonAtras);
 		
 		verPedidos();
@@ -75,28 +75,28 @@ public class VentanaVerPedidos extends JFrame {
 			tablaVerPedidos = new JTable();
 			tablaVerPedidos.setFont(new Font("Arial", Font.PLAIN, 14));
 			tablaVerPedidos.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-			tablaVerPedidos.setBounds(233, 196, 571, 193);
+			tablaVerPedidos.setBounds(233, 125, 571, 391);
 			contentPanelVerPedidos.add(tablaVerPedidos);
 			
-			JLabel lblNewLabel = new JLabel("idP");
-			lblNewLabel.setBounds(255, 176, 46, 14);
-			contentPanelVerPedidos.add(lblNewLabel);
+			JLabel lblNewLabelid = new JLabel("id");
+			lblNewLabelid.setBounds(254, 100, 46, 14);
+			contentPanelVerPedidos.add(lblNewLabelid);
 			
-			JLabel lblNewLabel_1 = new JLabel("clienteUsuario");
-			lblNewLabel_1.setBounds(312, 176, 83, 14);
-			contentPanelVerPedidos.add(lblNewLabel_1);
+			JLabel lblNewLabelUsuario = new JLabel("Usuario");
+			lblNewLabelUsuario.setBounds(323, 100, 83, 14);
+			contentPanelVerPedidos.add(lblNewLabelUsuario);
 			
-			JLabel lblNewLabel_2 = new JLabel("fechaP");
-			lblNewLabel_2.setBounds(470, 176, 46, 14);
-			contentPanelVerPedidos.add(lblNewLabel_2);
+			JLabel lblNewLabelFP = new JLabel("Fecha pedido");
+			lblNewLabelFP.setBounds(451, 100, 102, 14);
+			contentPanelVerPedidos.add(lblNewLabelFP);
 			
-			JLabel lblNewLabel_3 = new JLabel("fechaE");
-			lblNewLabel_3.setBounds(620, 176, 46, 14);
-			contentPanelVerPedidos.add(lblNewLabel_3);
+			JLabel lblNewLabelFE = new JLabel("Fecha  entrega");
+			lblNewLabelFE.setBounds(592, 101, 107, 14);
+			contentPanelVerPedidos.add(lblNewLabelFE);
 			
-			JLabel lblNewLabel_4 = new JLabel("precioTotal");
-			lblNewLabel_4.setBounds(726, 176, 64, 14);
-			contentPanelVerPedidos.add(lblNewLabel_4);
+			JLabel lblNewLabelC = new JLabel("Coste");
+			lblNewLabelC.setBounds(732, 102, 64, 14);
+			contentPanelVerPedidos.add(lblNewLabelC);
 			
 			Bd bd = new Bd();
 			bd.cargarDriver();
