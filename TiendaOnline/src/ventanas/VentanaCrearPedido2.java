@@ -73,7 +73,7 @@ public class VentanaCrearPedido2 extends JFrame {
 		tablaCrearPedidoPatin = new JTable();
 		tablaCrearPedidoPatin.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		tablaCrearPedidoPatin.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tablaCrearPedidoPatin.setBounds(10, 40, 1014, 277);
+		tablaCrearPedidoPatin.setBounds(261, 36, 514, 277);
 		contentPanelCrearPedido2.add(tablaCrearPedidoPatin);
 		
 		JLabel lblPatin = new JLabel("Crea tu Patin");
@@ -137,6 +137,8 @@ public class VentanaCrearPedido2 extends JFrame {
 		comboBoxRuedasP.setBounds(570, 410, 121, 22);
 		contentPanelCrearPedido2.add(comboBoxRuedasP);
 		
+	
+		
 	/*	JButton btnCrearPatin = new JButton("Crear Pedido");
 		btnCrearPatin.setBounds(72, 499, 109, 23);
 		contentPanelCrearPedido2.add(btnCrearPatin);*/
@@ -184,6 +186,34 @@ public class VentanaCrearPedido2 extends JFrame {
 		JButton btnCrearPatin = new JButton("Crear Pedido");
 		btnCrearPatin.setBounds(72, 499, 109, 23);
 		contentPanelCrearPedido2.add(btnCrearPatin);
+		
+		JLabel lblNewLabelModeloP = new JLabel("Modelo");
+		lblNewLabelModeloP.setBounds(261, 22, 46, 14);
+		contentPanelCrearPedido2.add(lblNewLabelModeloP);
+		
+		JLabel lblNewLabelMarcaP = new JLabel("Marca");
+		lblNewLabelMarcaP.setBounds(343, 22, 46, 14);
+		contentPanelCrearPedido2.add(lblNewLabelMarcaP);
+		
+		JLabel lblNewLabelPrecioP = new JLabel("Precio");
+		lblNewLabelPrecioP.setBounds(426, 22, 46, 14);
+		contentPanelCrearPedido2.add(lblNewLabelPrecioP);
+		
+		JLabel lblNewLabelCvP = new JLabel("Cv");
+		lblNewLabelCvP.setBounds(476, 22, 46, 14);
+		contentPanelCrearPedido2.add(lblNewLabelCvP);
+		
+		JLabel lblNewLabelRuedasP = new JLabel("Ruedas");
+		lblNewLabelRuedasP.setBounds(526, 22, 46, 14);
+		contentPanelCrearPedido2.add(lblNewLabelRuedasP);
+		
+		JLabel lblNewLabelManillarP = new JLabel("Manilllar");
+		lblNewLabelManillarP.setBounds(609, 21, 61, 14);
+		contentPanelCrearPedido2.add(lblNewLabelManillarP);
+		
+		JLabel lblNewLabelBaseP = new JLabel("Base");
+		lblNewLabelBaseP.setBounds(691, 22, 46, 14);
+		contentPanelCrearPedido2.add(lblNewLabelBaseP);
 		btnCrearPatin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Pedido p = new Pedido();

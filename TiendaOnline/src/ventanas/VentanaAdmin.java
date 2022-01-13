@@ -40,7 +40,7 @@ public class VentanaAdmin extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentAdmin;
 	private final Action actionCerrarSesion = new botonCerrarSesion();
-	private final Action anyadirStock = new botonAnyadirStock();
+	
 	private final Action importarClientes = new botonImportarClientes();
 	private final Action exportarClientes = new botonExportarClientes();
 	private final Action verPedidos = new botonVerPedidos();
@@ -68,13 +68,8 @@ public class VentanaAdmin extends JFrame {
 
 		JButton botonImportarClientes = new JButton("Importar Clientes");
 		botonImportarClientes.setAction(importarClientes);
-		botonImportarClientes.setBounds(428, 202, 151, 23);
+		botonImportarClientes.setBounds(428, 227, 151, 23);
 		contentAdmin.add(botonImportarClientes);
-
-		JButton botonAnyadirStock = new JButton("Añadir Stock");
-		botonAnyadirStock.setAction(anyadirStock);
-		botonAnyadirStock.setBounds(428, 253, 151, 23);
-		contentAdmin.add(botonAnyadirStock);
 
 		JButton botonExportarClientes = new JButton("Exportar Clientes");
 		botonExportarClientes.setBounds(428, 304, 151, 23);
@@ -107,24 +102,7 @@ public class VentanaAdmin extends JFrame {
 		}
 	}
 
-	private class botonAnyadirStock extends AbstractAction {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
-		public botonAnyadirStock() {
-			putValue(NAME, "Añadir Stock");
-			putValue(SHORT_DESCRIPTION, "Añadir stock de uno o varios productos");
-		}
-
-		public void actionPerformed(ActionEvent e) {
-			VentanaAnyadirStock ventanaAnyadirStock = new VentanaAnyadirStock(ad);
-			ventanaAnyadirStock.setVisible(true);
-			dispose();
-		}
-
-	}
+	
 
 	private class botonImportarClientes extends AbstractAction {
 		/**

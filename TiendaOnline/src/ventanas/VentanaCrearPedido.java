@@ -1,6 +1,8 @@
 package ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,20 +23,26 @@ import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 import bd.Bd;
 import models.Bicicleta;
 import models.Cliente;
 import models.Pedido;
+import javax.swing.JScrollBar;
 
 public class VentanaCrearPedido extends JFrame {
 
@@ -65,13 +73,16 @@ public class VentanaCrearPedido extends JFrame {
 		contentPanelCrearPedido.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPanelCrearPedido);
 		contentPanelCrearPedido.setLayout(null);
-
+		
+		
 		tablaCrearPedidoBici = new JTable();
 		tablaCrearPedidoBici.setFont(new Font("Arial", Font.PLAIN, 14));
 		tablaCrearPedidoBici.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		tablaCrearPedidoBici.setBounds(10, 40, 1014, 277);
+		tablaCrearPedidoBici.setBounds(265, 56, 514, 277);
 		contentPanelCrearPedido.add(tablaCrearPedidoBici);
-
+		
+		
+		
 		JLabel labelBicicleta = new JLabel("Crea tu bicicleta");
 		labelBicicleta.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		labelBicicleta.setBounds(458, 344, 118, 26);
@@ -172,6 +183,36 @@ public class VentanaCrearPedido extends JFrame {
 		JButton btnCrearPedido = new JButton("Crear pedido");
 		btnCrearPedido.setBounds(86, 512, 118, 23);
 		contentPanelCrearPedido.add(btnCrearPedido);
+		
+		JLabel lblNewLabelModeloB = new JLabel("Modelo");
+		lblNewLabelModeloB.setBounds(265, 42, 46, 14);
+		contentPanelCrearPedido.add(lblNewLabelModeloB);
+		
+		JLabel lblNewLabelMarcaB = new JLabel("Marca");
+		lblNewLabelMarcaB.setBounds(347, 42, 46, 14);
+		contentPanelCrearPedido.add(lblNewLabelMarcaB);
+		
+		JLabel lblNewLabelPrecioB = new JLabel("Precio");
+		lblNewLabelPrecioB.setBounds(430, 43, 46, 14);
+		contentPanelCrearPedido.add(lblNewLabelPrecioB);
+		
+		JLabel lblNewLabelCvB = new JLabel("Cv");
+		lblNewLabelCvB.setBounds(480, 43, 46, 14);
+		contentPanelCrearPedido.add(lblNewLabelCvB);
+		
+		JLabel lblNewLabelRuedasB = new JLabel("Ruedas");
+		lblNewLabelRuedasB.setBounds(530, 42, 46, 14);
+		contentPanelCrearPedido.add(lblNewLabelRuedasB);
+		
+		JLabel lblNewLabelBaseB = new JLabel("Base");
+		lblNewLabelBaseB.setBounds(613, 42, 46, 14);
+		contentPanelCrearPedido.add(lblNewLabelBaseB);
+		
+		JLabel lblNewLabelSillinB = new JLabel("Sillin");
+		lblNewLabelSillinB.setBounds(697, 42, 46, 14);
+		contentPanelCrearPedido.add(lblNewLabelSillinB);
+		
+		
 		btnCrearPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Pedido p = new Pedido();
@@ -218,11 +259,10 @@ public class VentanaCrearPedido extends JFrame {
 
 	public void cargarBicicletas() {
 
-		Vector<String> cabecerasBici = new Vector<String>(
-				Arrays.asList("Modelo", "Marca", "Precio", "Cv", "Ruedas", "Manillar", "Sillin"));
+		Vector<String> cabecerasBici = new Vector<String>(Arrays.asList("Modelo", "Marca", "Precio", "Cv", "Ruedas", "Manillar", "Sillin"));
 		mDatosBici = new DefaultTableModel(new Vector<Vector<Object>>(), cabecerasBici);
 		tablaCrearPedidoBici.setModel(mDatosBici);
-
+		
 		for (Bicicleta b : pedidoBicis) {
 			mDatosBici.addRow(new Object[] { b.getModelo(), b.getMarca(), b.getPrecio(), b.getCv(), b.getRueda(),
 					b.getManillar(), b.getSillin() });
@@ -237,5 +277,4 @@ public class VentanaCrearPedido extends JFrame {
 		tablaCrearPedidoBici.getColumnModel().getColumn(6).setMaxWidth(100);
 
 	}
-	
 	}
