@@ -38,6 +38,7 @@ public class VentanaRegistro extends JFrame {
 	private final Action actionBotonAtras = new botonAtras();
 	private final Action actionBotonRegistro = new botonRegistro();
 	protected Administrador ad;
+	private final Action action = new generarContrasenya();
 
 	public VentanaRegistro(Administrador a) {
 		ad = a;
@@ -126,6 +127,11 @@ public class VentanaRegistro extends JFrame {
 		labelRegistro.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		labelRegistro.setBounds(296, 40, 563, 41);
 		contentPanel.add(labelRegistro);
+		
+		JButton generarContrasenya = new JButton("Generar contrase\u00F1a segura");
+		generarContrasenya.setAction(action);
+		generarContrasenya.setBounds(636, 213, 198, 23);
+		contentPanel.add(generarContrasenya);
 
 	}
 	//Funcionalidad del boton para ir a la ventana de inicio
@@ -253,6 +259,14 @@ public class VentanaRegistro extends JFrame {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	
+	RecursividadContraseñas p = new RecursividadContraseñas();
+	private class generarContrasenya extends AbstractAction {
+		public generarContrasenya() {
+			putValue(NAME, "Generar contraseña segura");
+			putValue(SHORT_DESCRIPTION, "Generar contraseña segura automáticamente");
+		}
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(null, p.generate(10, 4, 4), "Contraseña segura sugerida",JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 }
